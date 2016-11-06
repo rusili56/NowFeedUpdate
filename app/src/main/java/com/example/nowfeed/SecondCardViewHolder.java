@@ -25,6 +25,9 @@ public class SecondCardViewHolder extends RecyclerView.ViewHolder {
     ImageView mIcon;
     View mView;
     TextView mTemp;
+    TextView mPress;
+    TextView mHum;
+    TextView mWindSpeed;
 
     public SecondCardViewHolder(ViewGroup parent) {
         super(inflateView(parent));
@@ -35,6 +38,9 @@ public class SecondCardViewHolder extends RecyclerView.ViewHolder {
         mIcon=(ImageView) mView.findViewById(R.id.weather_icon);
         mCity=(TextView) mView.findViewById(R.id.cityText);
         mTemp=(TextView)mView.findViewById(R.id.temp);
+        mPress=(TextView)mView.findViewById(R.id.press);
+        mHum=(TextView)mView.findViewById(R.id.hum);
+        mWindSpeed=(TextView)mView.findViewById(R.id.windSpeed);
 
     }
 
@@ -49,13 +55,18 @@ public class SecondCardViewHolder extends RecyclerView.ViewHolder {
     protected  void onBind(WeatherRespond weatherRespond){
 
         Weather weather = weatherRespond.getWeather().get(0);
-        //mTitle.setText(weather.getMain());
         mDescription.setText(weather.getMain()+"("+weather.getDescription()+")");
-        mCity.setText(weatherRespond.getName()+",United States of America");
-        Picasso.with(mView.getContext()).load("http://openweathermap.org/img/w/"+weather.getIcon()+".png").resize(200,200).centerCrop().into(mIcon);
-        //mIcon.setImageDrawable(mWeatherIcon);
+        WeatherRespond.Sys system= weatherRespond.getSys();
+        mCity.setText(weatherRespond.getName()+ ","+system.getCountry());
+        Picasso.with(mView.getContext()).load("http://openweathermap.org/img/w/"+weather.getIcon()+".png").resize(170,170).centerCrop().into(mIcon);
         WeatherRespond.WeatherMain weatherMain= weatherRespond.getMain();
-        mTemp.setText(Double.toString(weatherMain.getTemp()));
+        WeatherRespond.Wind wind = weatherRespond.getWind();
+        double temperature = Math.round(1.8*(weatherMain.getTemp()-273)+32);
+        mTemp.setText(Double.toString(temperature)+" ºF");
+        mPress.setText(Double.toString(weatherMain.getPressure())+" hPa");
+        mHum.setText(Double.toString(weatherMain.getHumidity())+" %");
+        mWindSpeed.setText(wind.getSpeed()+" mps" + " "+ wind.getDeg()+"º");
+
 
 
 
