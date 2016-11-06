@@ -12,7 +12,7 @@
         android:layout_height="200dp"
         android:layout_gravity="center"
         android:layout_marginBottom="5dp"
-        card_view:cardCornerRadius="4dp"
+        card_view:cardCornerRadius="@dimen/corner_dim"
         card_view:cardElevation="@dimen/cardview_default_elevation"
         cardview:cardUseCompatPadding="true"
         >
