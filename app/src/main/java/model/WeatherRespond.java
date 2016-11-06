@@ -10,9 +10,6 @@ public class WeatherRespond {
 
     Coordinate coord;
 
-    public List<Weather> getWeather() {
-        return weather;
-    }
 
     List<Weather> weather;
     WeatherMain main;
@@ -22,7 +19,39 @@ public class WeatherRespond {
     String name;
     int cod;
 
-public class Coordinate{
+    public List<Weather> getWeather() {
+        return weather;
+    }
+
+    public Coordinate getCoord() {
+        return coord;
+    }
+
+    public WeatherMain getMain() {
+        return main;
+    }
+
+    public Wind getWind() {
+        return wind;
+    }
+
+    public Sys getSys() {
+        return sys;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getCod() {
+        return cod;
+    }
+
+    public class Coordinate{
     float lon;
     float lat;}
 public class WeatherMain{
@@ -31,6 +60,26 @@ public class WeatherMain{
     double humidity;
     double temp_min;
     double temp_max;
+
+    public double getTemp() {
+        return temp;
+    }
+
+    public double getPressure() {
+        return pressure;
+    }
+
+    public double getHumidity() {
+        return humidity;
+    }
+
+    public double getTemp_min() {
+        return temp_min;
+    }
+
+    public double getTemp_max() {
+        return temp_max;
+    }
 }
 public class Wind{
 

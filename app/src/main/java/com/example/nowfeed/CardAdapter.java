@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import model.Instagram;
-import model.Weather;
+import model.WeatherRespond;
 
 /**
  * Created by Millochka on 10/30/16.
@@ -29,15 +29,12 @@ public class CardAdapter extends RecyclerView.Adapter {
 
         switch (viewType) {
             case INSTAGRAM:
-
                 viewHolder = new FirstCardViewHolder(parent);
                 break;
             case WEATHER:
-
                 viewHolder = new SecondCardViewHolder(parent);
                 break;
             default:
-
                 viewHolder = new ThirdCardViewHolder(parent);
                 break;
         }
@@ -57,7 +54,7 @@ public class CardAdapter extends RecyclerView.Adapter {
             case WEATHER:
 
                 SecondCardViewHolder secondCard = (SecondCardViewHolder) holder;
-                secondCard.onBind((Weather) items.get(position));
+                secondCard.onBind((WeatherRespond) items.get(position));
                 break;
             default:
                 ThirdCardViewHolder thirdCard = (ThirdCardViewHolder) holder;
@@ -80,7 +77,7 @@ public class CardAdapter extends RecyclerView.Adapter {
         public int getItemViewType ( int position){
             if (items.get(position) instanceof Instagram) {
                 return  INSTAGRAM;
-            } else if (items.get(position) instanceof Weather) {
+            } else if (items.get(position) instanceof WeatherRespond) {
                 return WEATHER;
             }else if (items.get(position) instanceof String) {
                 return NOTES;
