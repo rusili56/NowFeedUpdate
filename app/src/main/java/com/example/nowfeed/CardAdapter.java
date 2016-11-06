@@ -5,8 +5,8 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-import model.Instagram;
-import model.WeatherRespond;
+import com.example.nowfeed.model.InstagramUserPOJO;
+import com.example.nowfeed.model.WeatherRespond;
 
 /**
  * Created by Millochka on 10/30/16.
@@ -49,7 +49,7 @@ public class CardAdapter extends RecyclerView.Adapter {
             case INSTAGRAM:
                 FirstCardViewHolder firstCard= (FirstCardViewHolder) holder;
 
-                firstCard.onBind((Instagram) items.get(position));
+                //firstCard.onBind((Instagram) items.get(position));
                 break;
             case WEATHER:
 
@@ -75,7 +75,7 @@ public class CardAdapter extends RecyclerView.Adapter {
 
         @Override
         public int getItemViewType ( int position){
-            if (items.get(position) instanceof Instagram) {
+            if (items.get(position) instanceof InstagramUserPOJO) {
                 return  INSTAGRAM;
             } else if (items.get(position) instanceof WeatherRespond) {
                 return WEATHER;

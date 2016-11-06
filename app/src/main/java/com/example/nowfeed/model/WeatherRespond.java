@@ -1,4 +1,4 @@
-package model;
+package com.example.nowfeed.model;
 
 import java.util.List;
 

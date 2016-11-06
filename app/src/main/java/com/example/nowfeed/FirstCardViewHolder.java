@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import model.Instagram;
+import com.example.nowfeed.model.InstagramUserPOJO;
 
 /**
  * Created by Millochka on 10/31/16.
@@ -20,7 +20,6 @@ public class FirstCardViewHolder extends RecyclerView.ViewHolder {
         super(inflateView(parent));
 
         mView=itemView;
-        mTitle=(TextView)mView.findViewById(R.id.instagram);
 
 
     }
@@ -28,13 +27,11 @@ public class FirstCardViewHolder extends RecyclerView.ViewHolder {
 
     public static View inflateView(ViewGroup parent){
         LayoutInflater inflater= LayoutInflater.from(parent.getContext());
-
         return inflater.inflate(R.layout.first_card, parent,false);
 
     }
 
-    protected  void onBind(Instagram instagram){
-        mTitle.setText(instagram.getmInstagramTitle());
+    protected  void onBind(InstagramUserPOJO instagram){
 
     }
 

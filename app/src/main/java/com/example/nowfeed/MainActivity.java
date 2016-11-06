@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.nowfeed.network.InstagramAPIs;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -17,10 +19,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Instagram;
-import model.Weather;
-import model.WeatherRespond;
-import network.WeatherApi;
+import com.example.nowfeed.model.Weather;
+import com.example.nowfeed.model.WeatherRespond;
+import com.example.nowfeed.network.WeatherApi;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -42,9 +43,11 @@ RecyclerView recyclerView;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        InstagramAPIs igAPI = new InstagramAPIs(this);
+        igAPI.getUserID();
+
+
         mCardsData.add("Mila's Notes");
-
-
 
         Retrofit retrofit=new Retrofit.Builder().baseUrl("http://api.openweathermap.org/").addConverterFactory(GsonConverterFactory.create()).build();
         final WeatherApi weatherApi=retrofit.create(WeatherApi.class);
@@ -61,7 +64,7 @@ RecyclerView recyclerView;
                     Log.d(TAG,weather.get(0).getMain());
                     Log.d(TAG,weather.get(0).getIcon());
                     mCardsData.add(weatherRespond);
-                    mCardsData.add(new Instagram());
+                    //mCardsData.add(new Instagram());
                     initializeRecView();
 //                    URL imageURL= null;
 //                    try {

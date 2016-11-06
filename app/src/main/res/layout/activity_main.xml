@@ -11,6 +11,7 @@
     tools:context="com.example.nowfeed.MainActivity">
 
     <TextView
+        android:id="@+id/idtest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
          />

@@ -9,8 +9,8 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import model.Weather;
-import model.WeatherRespond;
+import com.example.nowfeed.model.Weather;
+import com.example.nowfeed.model.WeatherRespond;
 
 /**
  * Created by Millochka on 10/31/16.
