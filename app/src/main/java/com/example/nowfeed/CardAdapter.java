@@ -1,10 +1,12 @@
 package com.example.nowfeed;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.ViewGroup;
 
 import java.util.List;
 
+import com.example.nowfeed.model.InstagramMediaPOJO;
 import com.example.nowfeed.model.InstagramUserPOJO;
 import com.example.nowfeed.model.WeatherRespond;
 
@@ -18,8 +20,11 @@ public class CardAdapter extends RecyclerView.Adapter {
     private final int  INSTAGRAM = 0,WEATHER = 1,NOTES=2 ;
 
     public CardAdapter(List<Object> items) {
+        String yep = null;
         this.items=items;
-
+        Log.d("CardAdapterList", "" + this.items.size());
+        if (this.items.get(0) instanceof InstagramMediaPOJO) yep = "yep";
+        Log.d("CardAdapterListBoolean", "" + yep);
     }
 
 
@@ -29,35 +34,32 @@ public class CardAdapter extends RecyclerView.Adapter {
 
         switch (viewType) {
             case INSTAGRAM:
-                viewHolder = new FirstCardViewHolder(parent);
+                viewHolder = new InstagramCardViewHolder(parent);
                 break;
             case WEATHER:
-                viewHolder = new SecondCardViewHolder(parent);
+                viewHolder = new WeatherCardViewHolder(parent);
                 break;
             default:
-                viewHolder = new ThirdCardViewHolder(parent);
+                viewHolder = new NotesCardViewHolder(parent);
                 break;
         }
         return viewHolder;
-
-
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         switch (getItemViewType(position)) {
             case INSTAGRAM:
-                FirstCardViewHolder firstCard= (FirstCardViewHolder) holder;
-
-                //firstCard.onBind((Instagram) items.get(position));
+                InstagramCardViewHolder firstCard = (InstagramCardViewHolder) holder;
+                firstCard.onBind((InstagramMediaPOJO) items.get(position));
                 break;
             case WEATHER:
 
-                SecondCardViewHolder secondCard = (SecondCardViewHolder) holder;
+                WeatherCardViewHolder secondCard = (WeatherCardViewHolder) holder;
                 secondCard.onBind((WeatherRespond) items.get(position));
                 break;
             default:
-                ThirdCardViewHolder thirdCard = (ThirdCardViewHolder) holder;
+                NotesCardViewHolder thirdCard = (NotesCardViewHolder) holder;
                 thirdCard.onBind((String)items.get(position));
 
                 break;
@@ -75,7 +77,7 @@ public class CardAdapter extends RecyclerView.Adapter {
 
         @Override
         public int getItemViewType ( int position){
-            if (items.get(position) instanceof InstagramUserPOJO) {
+            if (items.get(position) instanceof InstagramMediaPOJO) {
                 return  INSTAGRAM;
             } else if (items.get(position) instanceof WeatherRespond) {
                 return WEATHER;

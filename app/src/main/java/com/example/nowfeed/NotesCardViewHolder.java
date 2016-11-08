@@ -10,10 +10,10 @@ import android.widget.TextView;
  * Created by Millochka on 10/31/16.
  */
 
-public class ThirdCardViewHolder extends RecyclerView.ViewHolder{
+public class NotesCardViewHolder extends RecyclerView.ViewHolder{
     View mView;
     TextView mNote;
-    public ThirdCardViewHolder(ViewGroup parent) {
+    public NotesCardViewHolder(ViewGroup parent) {
         super(inflateView(parent));
 
         mView=itemView;

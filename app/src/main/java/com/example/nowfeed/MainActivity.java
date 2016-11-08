@@ -10,17 +10,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.nowfeed.model.InstagramMediaPOJO;
+import com.example.nowfeed.model.NYTimesPOJO;
+import com.example.nowfeed.model.TwitterPOJO;
 import com.example.nowfeed.network.InstagramAPIs;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.example.nowfeed.model.Weather;
 import com.example.nowfeed.model.WeatherRespond;
+import com.example.nowfeed.network.InstagramService;
+import com.example.nowfeed.network.NYTimesService;
+import com.example.nowfeed.network.TwitterService;
 import com.example.nowfeed.network.WeatherApi;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,12 +45,65 @@ RecyclerView recyclerView;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        InstagramAPIs igAPI = new InstagramAPIs(this);
-        igAPI.getUserID();
-
-
         mCardsData.add("Mila's Notes");
+        InstagramAPI();
+        WeatherAPI();
+    }
 
+    public void InstagramAPI(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://api.instagram.com/v1/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        InstagramService igService = retrofit.create(InstagramService.class);
+        Call<InstagramMediaPOJO> getRecentMedia = igService.getRecentMedia();
+        getRecentMedia.enqueue(new Callback<InstagramMediaPOJO>() {
+            @Override
+            public void onResponse(Call<InstagramMediaPOJO> call, Response<InstagramMediaPOJO> response) {
+                InstagramMediaPOJO igMedia = response.body();
+                mCardsData.add(igMedia);
+                Log.d("igMedia1", response.body().getData().get(0).getImages().getlow_resolution().getUrl());
+            }
+            @Override
+            public void onFailure(Call<InstagramMediaPOJO> call, Throwable t) {}
+        });
+    }
+
+    public void TwitterAPI(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://api.twitter.com/1.1")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        TwitterService igService = retrofit.create(TwitterService.class);
+        Call<TwitterPOJO> getRecentMedia = igService.();
+        getRecentMedia.enqueue(new Callback<TwitterPOJO>() {
+            @Override
+            public void onResponse(Call<TwitterPOJO> call, Response<TwitterPOJO> response) {
+
+            }
+            @Override
+            public void onFailure(Call<TwitterPOJO> call, Throwable t) {}
+        });
+    }
+
+    public void NYTAPI(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://api.nytimes.com/svc")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        NYTimesService igService = retrofit.create(NYTimesService.class);
+        Call<NYTimesPOJO> getRecentMedia = igService.();
+        getRecentMedia.enqueue(new Callback<NYTimesPOJO>() {
+            @Override
+            public void onResponse(Call<NYTimesPOJO> call, Response<NYTimesPOJO> response) {
+
+            }
+            @Override
+            public void onFailure(Call<NYTimesPOJO> call, Throwable t) {}
+        });
+    }
+
+    public void WeatherAPI(){
         Retrofit retrofit=new Retrofit.Builder().baseUrl("http://api.openweathermap.org/").addConverterFactory(GsonConverterFactory.create()).build();
         final WeatherApi weatherApi=retrofit.create(WeatherApi.class);
         Call<WeatherRespond> call= weatherApi.fetchWeather(LOCATION,API_KEY);
@@ -64,61 +119,21 @@ RecyclerView recyclerView;
                     Log.d(TAG,weather.get(0).getMain());
                     Log.d(TAG,weather.get(0).getIcon());
                     mCardsData.add(weatherRespond);
-                    //mCardsData.add(new Instagram());
+                    Log.d("mCardsData Size", "" + mCardsData.size());
                     initializeRecView();
-//                    URL imageURL= null;
-//                    try {
-//                        imageURL = new URL("http://openweathermap.org/img/w/"+weather.get(0).getIcon()+".png");
-//                    } catch (MalformedURLException e) {
-//                        e.printStackTrace();
-//                    }
-//
-//                    try {
-//                        InputStream content=(InputStream)imageURL.getContent();
-//                        mWeatherIcon= Drawable.createFromStream(content,"src");
-//
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-
-
                 }
-
             }
-
             @Override
-            public void onFailure(Call<WeatherRespond> call, Throwable t) {
-
-            }
+            public void onFailure(Call<WeatherRespond> call, Throwable t) {}
         });
-
-
-
     }
 
     public void initializeRecView(){
         recyclerView=(RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new CardAdapter(mCardsData));
-
     }
-
-    public void getWeatherPicture(String icon) throws MalformedURLException {
-
-        URL imageURL= new URL("http://openweathermap.org/img/w/");
-
-        try {
-            InputStream content=(InputStream)imageURL.getContent();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
 
     @Override
-    public void onClick(View view) {
-
-
-    }
+    public void onClick(View view) {}
 }

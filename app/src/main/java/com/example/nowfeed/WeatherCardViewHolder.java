@@ -16,7 +16,7 @@ import com.example.nowfeed.model.WeatherRespond;
  * Created by Millochka on 10/31/16.
  */
 
-public class SecondCardViewHolder extends RecyclerView.ViewHolder {
+public class WeatherCardViewHolder extends RecyclerView.ViewHolder {
 
 
     TextView mTitle;
@@ -29,7 +29,7 @@ public class SecondCardViewHolder extends RecyclerView.ViewHolder {
     TextView mHum;
     TextView mWindSpeed;
 
-    public SecondCardViewHolder(ViewGroup parent) {
+    public WeatherCardViewHolder(ViewGroup parent) {
         super(inflateView(parent));
 
        mView=itemView;
@@ -66,10 +66,5 @@ public class SecondCardViewHolder extends RecyclerView.ViewHolder {
         mPress.setText(Double.toString(weatherMain.getPressure())+" hPa");
         mHum.setText(Double.toString(weatherMain.getHumidity())+" %");
         mWindSpeed.setText(wind.getSpeed()+" mps" + " "+ wind.getDeg()+"º");
-
-
-
-
-
     }
 }

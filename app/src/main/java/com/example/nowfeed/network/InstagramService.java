@@ -1,5 +1,6 @@
 package com.example.nowfeed.network;
 
+import com.example.nowfeed.model.InstagramMediaPOJO;
 import com.example.nowfeed.model.InstagramUserPOJO;
 
 import retrofit2.Call;
@@ -19,6 +20,6 @@ public interface InstagramService {
     Call<InstagramUserPOJO> getSelf();
 
     @GET ("users/self/media/recent?"+ access_token)
-    Call<InstagramUserPOJO> getRecentMedia();
+    Call<InstagramMediaPOJO> getRecentMedia();
 
 }
