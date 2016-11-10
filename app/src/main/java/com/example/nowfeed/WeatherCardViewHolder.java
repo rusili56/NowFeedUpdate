@@ -18,7 +18,6 @@ import com.example.nowfeed.model.WeatherRespond;
 
 public class WeatherCardViewHolder extends RecyclerView.ViewHolder {
 
-
     TextView mTitle;
     TextView mDescription;
     TextView mCity;
@@ -47,13 +46,10 @@ public class WeatherCardViewHolder extends RecyclerView.ViewHolder {
 
     public static View inflateView(ViewGroup parent){
         LayoutInflater inflater= LayoutInflater.from(parent.getContext());
-
         return inflater.inflate(R.layout.second_card, parent,false);
-
     }
 
     protected  void onBind(WeatherRespond weatherRespond){
-
         Weather weather = weatherRespond.getWeather().get(0);
         mDescription.setText(weather.getMain()+"("+weather.getDescription()+")");
         WeatherRespond.Sys system= weatherRespond.getSys();

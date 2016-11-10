@@ -22,11 +22,7 @@ public class CardAdapter extends RecyclerView.Adapter {
     public CardAdapter(List<Object> items) {
         String yep = null;
         this.items=items;
-        Log.d("CardAdapterList", "" + this.items.size());
-        if (this.items.get(0) instanceof InstagramMediaPOJO) yep = "yep";
-        Log.d("CardAdapterListBoolean", "" + yep);
     }
-
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -54,19 +50,14 @@ public class CardAdapter extends RecyclerView.Adapter {
                 firstCard.onBind((InstagramMediaPOJO) items.get(position));
                 break;
             case WEATHER:
-
                 WeatherCardViewHolder secondCard = (WeatherCardViewHolder) holder;
                 secondCard.onBind((WeatherRespond) items.get(position));
                 break;
             default:
                 NotesCardViewHolder thirdCard = (NotesCardViewHolder) holder;
                 thirdCard.onBind((String)items.get(position));
-
                 break;
-
         }
-
-
     }
 
         @Override

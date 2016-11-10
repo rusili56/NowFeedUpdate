@@ -10,6 +10,7 @@ import retrofit2.http.Query;
  */
 
 public interface WeatherApi {
+
     @GET("data/2.5/weather")
     Call<WeatherRespond> fetchWeather(@Query("q") String location, @Query("APPID") String apiKey);
 }

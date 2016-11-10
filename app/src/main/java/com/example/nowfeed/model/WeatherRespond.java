@@ -10,7 +10,6 @@ public class WeatherRespond {
 
     Coordinate coord;
 
-
     List<Weather> weather;
     WeatherMain main;
     Wind wind;
@@ -53,7 +52,8 @@ public class WeatherRespond {
 
     public class Coordinate{
     float lon;
-    float lat;}
+    float lat;
+    }
 public class WeatherMain{
     double temp;
     double pressure;

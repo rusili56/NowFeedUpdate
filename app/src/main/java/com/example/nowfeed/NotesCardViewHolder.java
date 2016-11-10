@@ -15,22 +15,16 @@ public class NotesCardViewHolder extends RecyclerView.ViewHolder{
     TextView mNote;
     public NotesCardViewHolder(ViewGroup parent) {
         super(inflateView(parent));
-
         mView=itemView;
         mNote=(TextView)mView.findViewById(R.id.notes);
-
-
     }
 
     public static View inflateView(ViewGroup parent){
         LayoutInflater inflater= LayoutInflater.from(parent.getContext());
-
         return inflater.inflate(R.layout.third_card, parent,false);
-
     }
 
     protected  void onBind(String input){
         mNote.setText(input);
-
     }
 }
