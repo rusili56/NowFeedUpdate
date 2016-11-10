@@ -10,19 +10,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.nowfeed.model.BestSellersPOJO;
 import com.example.nowfeed.model.InstagramMediaPOJO;
-import com.example.nowfeed.model.NYTimesPOJO;
-import com.example.nowfeed.model.TwitterPOJO;
-import com.example.nowfeed.network.InstagramAPIs;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.nowfeed.model.TopStoriesPOJO;
 import com.example.nowfeed.model.Weather;
 import com.example.nowfeed.model.WeatherRespond;
 import com.example.nowfeed.network.InstagramService;
 import com.example.nowfeed.network.NYTimesService;
-import com.example.nowfeed.network.TwitterService;
 import com.example.nowfeed.network.WeatherApi;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -45,6 +43,8 @@ RecyclerView recyclerView;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        TopStoriesAPI();
+        BestSellersAPI();
         mCardsData.add("Mila's Notes");
         InstagramAPI();
         WeatherAPI();
@@ -65,41 +65,47 @@ RecyclerView recyclerView;
                 Log.d("igMedia1", response.body().getData().get(0).getImages().getlow_resolution().getUrl());
             }
             @Override
-            public void onFailure(Call<InstagramMediaPOJO> call, Throwable t) {}
-        });
-    }
-
-    public void TwitterAPI(){
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.twitter.com/1.1")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        TwitterService igService = retrofit.create(TwitterService.class);
-        Call<TwitterPOJO> getRecentMedia = igService.();
-        getRecentMedia.enqueue(new Callback<TwitterPOJO>() {
-            @Override
-            public void onResponse(Call<TwitterPOJO> call, Response<TwitterPOJO> response) {
-
+            public void onFailure(Call<InstagramMediaPOJO> call, Throwable t) {
+                Log.d("Instagram", "failure");
             }
-            @Override
-            public void onFailure(Call<TwitterPOJO> call, Throwable t) {}
         });
     }
 
-    public void NYTAPI(){
+    public void BestSellersAPI(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.nytimes.com/svc")
+                .baseUrl("https://api.nytimes.com/svc/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         NYTimesService igService = retrofit.create(NYTimesService.class);
-        Call<NYTimesPOJO> getRecentMedia = igService.();
-        getRecentMedia.enqueue(new Callback<NYTimesPOJO>() {
+        Call<BestSellersPOJO> getRecentMedia = igService.getBestSellers();
+        getRecentMedia.enqueue(new Callback<BestSellersPOJO>() {
             @Override
-            public void onResponse(Call<NYTimesPOJO> call, Response<NYTimesPOJO> response) {
-
+            public void onResponse(Call<BestSellersPOJO> call, Response<BestSellersPOJO> response) {
+                Log.d("NYT", response.body().getResults().get(0).getTitle());
             }
             @Override
-            public void onFailure(Call<NYTimesPOJO> call, Throwable t) {}
+            public void onFailure(Call<BestSellersPOJO> call, Throwable t) {
+                Log.d("NYT", "failure: " + t.toString());
+            }
+        });
+    }
+
+    public void TopStoriesAPI(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://api.nytimes.com/svc/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        NYTimesService igService = retrofit.create(NYTimesService.class);
+        Call<TopStoriesPOJO> getRecentMedia = igService.getTopStories();
+        getRecentMedia.enqueue(new Callback<TopStoriesPOJO>() {
+            @Override
+            public void onResponse(Call<TopStoriesPOJO> call, Response<TopStoriesPOJO> response) {
+                Log.d("NYT", response.body().getResults().get(0).getTitle());
+            }
+            @Override
+            public void onFailure(Call<TopStoriesPOJO> call, Throwable t) {
+                Log.d("NYT", "failure: " + t.toString());
+            }
         });
     }
 
