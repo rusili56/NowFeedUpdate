@@ -6,8 +6,10 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
+import com.example.nowfeed.model.BestSellersPOJO;
 import com.example.nowfeed.model.InstagramMediaPOJO;
 import com.example.nowfeed.model.InstagramUserPOJO;
+import com.example.nowfeed.model.TopStoriesPOJO;
 import com.example.nowfeed.model.WeatherRespond;
 
 /**
@@ -17,10 +19,9 @@ public class CardAdapter extends RecyclerView.Adapter {
 
     private List<Object> items;
 
-    private final int  INSTAGRAM = 0,WEATHER = 1,NOTES=2 ;
+    private final int  INSTAGRAM = 0,WEATHER = 1,NOTES=2, TOPSTORIES = 3, BESTSELLERS = 4;
 
     public CardAdapter(List<Object> items) {
-        String yep = null;
         this.items=items;
     }
 
@@ -34,6 +35,12 @@ public class CardAdapter extends RecyclerView.Adapter {
                 break;
             case WEATHER:
                 viewHolder = new WeatherCardViewHolder(parent);
+                break;
+            case TOPSTORIES:
+                viewHolder = new TopStoriesViewHolder(parent);
+                break;
+            case BESTSELLERS:
+                viewHolder = new BestSellersViewHolder(parent);
                 break;
             default:
                 viewHolder = new NotesCardViewHolder(parent);
@@ -52,6 +59,14 @@ public class CardAdapter extends RecyclerView.Adapter {
             case WEATHER:
                 WeatherCardViewHolder secondCard = (WeatherCardViewHolder) holder;
                 secondCard.onBind((WeatherRespond) items.get(position));
+                break;
+            case TOPSTORIES:
+                TopStoriesViewHolder topviewedCard = (TopStoriesViewHolder) holder;
+                topviewedCard.onBind((TopStoriesPOJO) items.get(position));
+                break;
+            case BESTSELLERS:
+                BestSellersViewHolder bestSellersCard = (BestSellersViewHolder) holder;
+                bestSellersCard.onBind((BestSellersPOJO) items.get(position));
                 break;
             default:
                 NotesCardViewHolder thirdCard = (NotesCardViewHolder) holder;
@@ -72,6 +87,10 @@ public class CardAdapter extends RecyclerView.Adapter {
                 return  INSTAGRAM;
             } else if (items.get(position) instanceof WeatherRespond) {
                 return WEATHER;
+            } else if (items.get(position) instanceof BestSellersPOJO) {
+                return BESTSELLERS;
+            } else if (items.get(position) instanceof TopStoriesPOJO) {
+                return TOPSTORIES;
             }else if (items.get(position) instanceof String) {
                 return NOTES;
             }

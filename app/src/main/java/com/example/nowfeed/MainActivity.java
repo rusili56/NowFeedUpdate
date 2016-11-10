@@ -81,7 +81,9 @@ RecyclerView recyclerView;
         getRecentMedia.enqueue(new Callback<BestSellersPOJO>() {
             @Override
             public void onResponse(Call<BestSellersPOJO> call, Response<BestSellersPOJO> response) {
+                BestSellersPOJO NYTBestSellers = response.body();
                 Log.d("NYT", response.body().getResults().get(0).getTitle());
+                mCardsData.add(NYTBestSellers);
             }
             @Override
             public void onFailure(Call<BestSellersPOJO> call, Throwable t) {
@@ -91,17 +93,23 @@ RecyclerView recyclerView;
     }
 
     public void TopStoriesAPI(){
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://api.nytimes.com/svc/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+
         NYTimesService igService = retrofit.create(NYTimesService.class);
         Call<TopStoriesPOJO> getRecentMedia = igService.getTopStories();
         getRecentMedia.enqueue(new Callback<TopStoriesPOJO>() {
+
             @Override
             public void onResponse(Call<TopStoriesPOJO> call, Response<TopStoriesPOJO> response) {
+                TopStoriesPOJO NYTTopStories = response.body();
                 Log.d("NYT", response.body().getResults().get(0).getTitle());
+                mCardsData.add(NYTTopStories);
             }
+
             @Override
             public void onFailure(Call<TopStoriesPOJO> call, Throwable t) {
                 Log.d("NYT", "failure: " + t.toString());

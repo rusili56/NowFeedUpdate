@@ -48,6 +48,14 @@ public class TopStoriesPOJO {
             return this.title;
         }
 
+        public String getByline(){
+            return this.byline;
+        }
+
+        public List<multimedia> getMultimedia(){
+            return multimedia;
+        }
+
         public class des_facet{
 
         }
@@ -73,6 +81,10 @@ public class TopStoriesPOJO {
             String subtype;
             String caption;
             String copyright;
+
+            public String getUrl(){
+                return this.url;
+            }
         }
 
     }
