@@ -7,8 +7,13 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+
+import com.example.nowfeed.model.Forecast;
+import com.example.nowfeed.model.ForecastFiveDays;
+import com.example.nowfeed.model.Instagram;
+import com.example.nowfeed.network.WeatherApi;
 
 import com.example.nowfeed.model.BestSeller;
 import com.example.nowfeed.model.Instagram;
@@ -22,6 +27,10 @@ import com.example.nowfeed.network.WeatherApi;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Instagram;
+import model.Weather;
+import model.WeatherRespond;
+import network.WeatherApi;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -31,14 +40,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
     InstagramFragment instafrag = new InstagramFragment();
 
-    List<Object> mCardsData = new ArrayList<>();
-    private static final String TAG = "MainActivity";
+ List<Object> mCardsData= new ArrayList<>();
+    private static final String TAG= "MainActivity";
     private static final String API_KEY = "62f136aaf813f7d74fabcdfdb0fcb3ba";
-    private static final String LOCATION = "NEWYORK,USA";
-    int instaPosition;
+    private static final String LOCATION="NEWYORK,USA";
+    public Retrofit mRetrofit;
+    WeatherApi mWeatherApi;
 
     RecyclerView recyclerView;
-
+    public static Drawable mWeatherIcon;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +86,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
+       mRetrofit=new Retrofit.Builder().baseUrl("http://api.openweathermap.org/").addConverterFactory(GsonConverterFactory.create()).build();
+        mWeatherApi=mRetrofit.create(WeatherApi.class);
+        Call<ForecastFiveDays> call= mWeatherApi.fetchFiveDays(LOCATION,API_KEY);
+        call.enqueue(new Callback<ForecastFiveDays>() {
             @Override
             public void onFailure(Call<Instagram> call, Throwable t) {
                 Log.d("Instagram", "failure");
@@ -140,30 +154,37 @@ public class MainActivity extends AppCompatActivity {
         Call<WeatherRespond> call = weatherApi.fetchWeather(LOCATION, API_KEY);
         call.enqueue(new Callback<WeatherRespond>() {
             @Override
-            public void onResponse(Call<WeatherRespond> call, Response<WeatherRespond> response) {
-                if (response.isSuccessful()) {
+            public void onResponse(Call<ForecastFiveDays> call, Response<ForecastFiveDays> response) {
+                if(response.isSuccessful()){
 
                     WeatherRespond weatherRespond = response.body();
-                    List<Weather> weather = weatherRespond.getWeather();
+                    List<Weather> weather=   weatherRespond.getWeather();
 
-                    Log.d(TAG, weather.get(0).getDescription());
-                    Log.d(TAG, weather.get(0).getMain());
-                    Log.d(TAG, weather.get(0).getIcon());
+                    ForecastFiveDays weatherRespond = response.body();
+                    List<Forecast> weatherForcast =  weatherRespond.getList();
                     mCardsData.add(weatherRespond);
-                    Log.d("mCardsData Size", "" + mCardsData.size());
+                    mCardsData.add(new Instagram());
+                    initializeRecView();
+
                 }
+
             }
 
             @Override
-            public void onFailure(Call<WeatherRespond> call, Throwable t) {
+            public void onFailure(Call<ForecastFiveDays> call, Throwable t) {
+
             }
         });
+
+
+
     }
 
     public void initializeRecView() {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new CardAdapter(mCardsData, this));
+        recyclerView.setAdapter(new CardAdapter(mCardsData, this, getFragmentManager()));
+
     }
 
     public void onClickRemoveFrag(View view) {
@@ -172,4 +193,12 @@ public class MainActivity extends AppCompatActivity {
         ft.remove(CardAdapter.getInstaFrag()).commit();
     }
 
+    }
+
+
+    @Override
+    public void onClick(View view) {
+
+
+    }
 }

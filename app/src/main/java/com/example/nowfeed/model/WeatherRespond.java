@@ -10,6 +10,7 @@ public class WeatherRespond {
 
     Coordinate coord;
 
+
     List<Weather> weather;
     WeatherMain main;
     Wind wind;
@@ -50,83 +51,80 @@ public class WeatherRespond {
         return cod;
     }
 
-    public class Coordinate {
-        float lon;
-        float lat;
+    public class Coordinate{
+    float lon;
+    float lat;}
+public class WeatherMain{
+    double temp;
+    double pressure;
+    double humidity;
+    double temp_min;
+    double temp_max;
+
+    public double getTemp() {
+        return temp;
     }
 
-    public class WeatherMain {
-        double temp;
-        double pressure;
-        double humidity;
-        double temp_min;
-        double temp_max;
-
-        public double getTemp() {
-            return temp;
-        }
-
-        public double getPressure() {
-            return pressure;
-        }
-
-        public double getHumidity() {
-            return humidity;
-        }
-
-        public double getTemp_min() {
-            return temp_min;
-        }
-
-        public double getTemp_max() {
-            return temp_max;
-        }
+    public double getPressure() {
+        return pressure;
     }
 
-    public class Wind {
-
-        double speed;
-        double deg;
-
-        public double getSpeed() {
-            return speed;
-        }
-
-        public double getDeg() {
-            return deg;
-        }
+    public double getHumidity() {
+        return humidity;
     }
 
-    public class Sys {
-        int type;
-        int id;
-        double message;
-        String country;
-        long sunrise;
-        long sunset;
-
-        public int getType() {
-            return type;
-        }
-
-        public int getId() {
-            return id;
-        }
-
-        public double getMessage() {
-            return message;
-        }
-
-        public String getCountry() {
-            return country;
-        }
-
-        public long getSunrise() {
-            return sunrise;
-        }
-
-        public long getSunset() {
-            return sunset;
-        }
+    public double getTemp_min() {
+        return temp_min;
     }
+
+    public double getTemp_max() {
+        return temp_max;
+    }
+}
+public class Wind{
+
+    double speed;
+    double deg;
+
+    public double getSpeed() {
+        return speed;
+    }
+
+    public double getDeg() {
+        return deg;
+    }
+}
+
+public class Sys{
+    int type;
+    int id;
+    double message;
+    String country;
+   long sunrise;
+   long sunset;
+
+    public int getType() {
+        return type;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public double getMessage() {
+        return message;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public long getSunrise() {
+        return sunrise;
+    }
+
+    public long getSunset() {
+        return sunset;
+    }
+}
 }
