@@ -1,4 +1,4 @@
-package com.example.nowfeed;
+package com.example.nowfeed.RecyclerView;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.nowfeed.R;
 import com.example.nowfeed.model.BestSellersPOJO;
 
 /**
@@ -35,8 +36,8 @@ public class BestSellersViewHolder extends RecyclerView.ViewHolder {
         tvAuthor = (TextView) mView.findViewById(R.id.idAuthor);
         tvDescription = (TextView) mView.findViewById(R.id.idDescription);
 
-        tvTitle.setText(bsPOJO.getResults().get(0).getTitle());
-        tvAuthor.setText(bsPOJO.getResults().get(0).getAuthor());
-        tvDescription.setText(bsPOJO.getResults().get(0).getDescription());
+        tvTitle.setText(bsPOJO.getResults().get(1).getTitle());
+        tvAuthor.setText(bsPOJO.getResults().get(1).getAuthor());
+        tvDescription.setText(bsPOJO.getResults().get(1).getDescription());
     }
 }

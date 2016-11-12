@@ -10,6 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
+import com.example.nowfeed.RecyclerView.CardAdapter;
+import com.example.nowfeed.RecyclerView.InstagramFragment;
 import com.example.nowfeed.model.BestSellersPOJO;
 import com.example.nowfeed.model.InstagramMediaPOJO;
 import com.example.nowfeed.model.TopStoriesPOJO;
@@ -55,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 initializeRecView();
             }
-        }, 5000);
+        }, 4000);
     }
 
     public void InstagramAPI() {
@@ -171,4 +173,5 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction ft = fm.beginTransaction();
         ft.remove(CardAdapter.getInstaFrag()).commit();
     }
+
 }

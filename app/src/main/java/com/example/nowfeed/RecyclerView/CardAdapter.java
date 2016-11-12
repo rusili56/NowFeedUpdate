@@ -1,4 +1,4 @@
-package com.example.nowfeed;
+package com.example.nowfeed.RecyclerView;
 
 import android.app.Activity;
 import android.app.FragmentManager;
@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.nowfeed.R;
 import com.example.nowfeed.model.BestSellersPOJO;
 import com.example.nowfeed.model.InstagramMediaPOJO;
 import com.example.nowfeed.model.TopStoriesPOJO;
@@ -22,6 +23,7 @@ public class CardAdapter extends RecyclerView.Adapter {
     Activity act;
     static InstagramFragment instafrag = new InstagramFragment();
     static FragmentManager fragmentManager;
+    static boolean isFragOpen = false;
 
     public final int INSTAGRAM = 0, WEATHER = 1, NOTES = 2, TOPSTORIES = 3, BESTSELLERS = 4;
 
@@ -65,6 +67,7 @@ public class CardAdapter extends RecyclerView.Adapter {
                     @Override
                     public void onClick(View view) {
                         fragmentManager.beginTransaction().add(R.id.idFragLayout, instafrag).commit();
+                        isFragOpen = true;
                     }
                 });
                 break;
@@ -115,6 +118,10 @@ public class CardAdapter extends RecyclerView.Adapter {
 
     public static FragmentManager getFragMan() {
         return fragmentManager;
+    }
+
+    public static boolean getIsTrue(){
+        return isFragOpen;
     }
 
 }

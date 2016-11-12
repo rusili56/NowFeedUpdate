@@ -28,23 +28,23 @@
                 <TextView
                     android:id="@+id/idTitle"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="75dp"
                     android:text="Title"
-                    android:textSize="30sp"
+                    android:textSize="25sp"
                     />
                 <TextView
                     android:id="@+id/idAuthor"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="50dp"
                     android:text="author"
-                    android:textSize="20sp"
+                    android:textSize="15sp"
                     />
                 <TextView
                     android:id="@+id/idDescription"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="description"
-                    android:textSize="15sp"
+                    android:textSize="20sp"
                     />
             </LinearLayout>
         </LinearLayout>

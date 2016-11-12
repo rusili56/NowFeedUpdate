@@ -1,10 +1,12 @@
-package com.example.nowfeed;
+package com.example.nowfeed.RecyclerView;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.nowfeed.R;
 
 /**
  * Created by Millochka on 10/31/16.

@@ -1,4 +1,4 @@
-package com.example.nowfeed;
+package com.example.nowfeed.RecyclerView;
 
 import android.app.Activity;
 import android.app.FragmentManager;
@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.example.nowfeed.R;
 import com.example.nowfeed.model.InstagramMediaPOJO;
 import com.squareup.picasso.Picasso;
 
