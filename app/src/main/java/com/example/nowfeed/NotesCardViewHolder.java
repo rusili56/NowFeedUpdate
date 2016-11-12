@@ -1,4 +1,4 @@
-package com.example.nowfeed.RecyclerView;
+package com.example.nowfeed;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

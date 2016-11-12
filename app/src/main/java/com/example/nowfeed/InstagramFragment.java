@@ -1,4 +1,4 @@
-package com.example.nowfeed.RecyclerView;
+package com.example.nowfeed;
 
 import android.app.Fragment;
 import android.os.Bundle;

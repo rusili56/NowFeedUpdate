@@ -10,8 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
-import com.example.nowfeed.RecyclerView.CardAdapter;
-import com.example.nowfeed.RecyclerView.InstagramFragment;
 import com.example.nowfeed.model.BestSeller;
 import com.example.nowfeed.model.Instagram;
 import com.example.nowfeed.model.TopStory;

@@ -1,4 +1,4 @@
-package com.example.nowfeed.RecyclerView;
+package com.example.nowfeed;
 
 import android.app.Activity;
 import android.app.FragmentManager;
@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.nowfeed.R;
 import com.example.nowfeed.model.BestSeller;
 import com.example.nowfeed.model.Instagram;
 import com.example.nowfeed.model.TopStory;
