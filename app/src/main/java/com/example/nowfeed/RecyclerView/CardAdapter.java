@@ -7,9 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.nowfeed.R;
-import com.example.nowfeed.model.BestSellersPOJO;
-import com.example.nowfeed.model.InstagramMediaPOJO;
-import com.example.nowfeed.model.TopStoriesPOJO;
+import com.example.nowfeed.model.BestSeller;
+import com.example.nowfeed.model.Instagram;
+import com.example.nowfeed.model.TopStory;
 import com.example.nowfeed.model.WeatherRespond;
 
 import java.util.List;
@@ -62,7 +62,7 @@ public class CardAdapter extends RecyclerView.Adapter {
         switch (getItemViewType(position)) {
             case INSTAGRAM:
                 InstagramCardViewHolder firstCard = (InstagramCardViewHolder) holder;
-                firstCard.onBind((InstagramMediaPOJO) items.get(position));
+                firstCard.onBind((Instagram) items.get(position));
                 ((InstagramCardViewHolder) holder).ivMedia.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -77,11 +77,11 @@ public class CardAdapter extends RecyclerView.Adapter {
                 break;
             case TOPSTORIES:
                 TopStoriesViewHolder topviewedCard = (TopStoriesViewHolder) holder;
-                topviewedCard.onBind((TopStoriesPOJO) items.get(position));
+                topviewedCard.onBind((TopStory) items.get(position));
                 break;
             case BESTSELLERS:
                 BestSellersViewHolder bestSellersCard = (BestSellersViewHolder) holder;
-                bestSellersCard.onBind((BestSellersPOJO) items.get(position));
+                bestSellersCard.onBind((BestSeller) items.get(position));
                 break;
             default:
                 NotesCardViewHolder thirdCard = (NotesCardViewHolder) holder;
@@ -98,13 +98,13 @@ public class CardAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemViewType(int position) {
-        if (items.get(position) instanceof InstagramMediaPOJO) {
+        if (items.get(position) instanceof Instagram) {
             return INSTAGRAM;
         } else if (items.get(position) instanceof WeatherRespond) {
             return WEATHER;
-        } else if (items.get(position) instanceof BestSellersPOJO) {
+        } else if (items.get(position) instanceof BestSeller) {
             return BESTSELLERS;
-        } else if (items.get(position) instanceof TopStoriesPOJO) {
+        } else if (items.get(position) instanceof TopStory) {
             return TOPSTORIES;
         } else if (items.get(position) instanceof String) {
             return NOTES;
@@ -120,7 +120,7 @@ public class CardAdapter extends RecyclerView.Adapter {
         return fragmentManager;
     }
 
-    public static boolean getIsTrue(){
+    public static boolean getIsTrue() {
         return isFragOpen;
     }
 

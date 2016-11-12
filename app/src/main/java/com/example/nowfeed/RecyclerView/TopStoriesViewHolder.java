@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.nowfeed.R;
-import com.example.nowfeed.model.TopStoriesPOJO;
+import com.example.nowfeed.model.TopStory;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -33,7 +33,7 @@ public class TopStoriesViewHolder extends RecyclerView.ViewHolder {
         return inflater.inflate(R.layout.topviewed_card, parent, false);
     }
 
-    protected void onBind(TopStoriesPOJO tsPOJO) {
+    protected void onBind(TopStory tsPOJO) {
         ivThumbnail = (ImageView) mView.findViewById(R.id.idtopviewedthumbnail);
         tvTitle = (TextView) mView.findViewById(R.id.idtopviewedtitle);
 

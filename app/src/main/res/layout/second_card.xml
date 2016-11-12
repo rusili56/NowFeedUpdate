@@ -15,20 +15,21 @@
         android:layout_marginBottom="5dp"
         card_view:cardCornerRadius="@dimen/corner_dim"
         card_view:cardElevation="@dimen/cardview_default_elevation"
-        cardview:cardUseCompatPadding="true"
-        >
+        cardview:cardUseCompatPadding="true">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:background="@color/colorLightPink"
             android:gravity="left">
+
             <TextView
                 android:id="@+id/cityText"
                 style="?android:attr/textAppearanceMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"/>
+                android:layout_centerHorizontal="true" />
 
             <ImageView
                 android:id="@+id/weather_icon"
@@ -43,8 +44,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/weather_icon"
-                android:layout_alignLeft="@id/weather_icon"
-                />
+                android:layout_alignLeft="@id/weather_icon" />
+
             <TextView
                 android:id="@+id/temp"
                 style="@style/tempStyle"
@@ -52,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
                 android:layout_alignBaseline="@id/weather_discription"
-                android:layout_toRightOf="@id/weather_discription"/>
+                android:layout_toRightOf="@id/weather_discription" />
 
             <TextView
                 android:layout_marginLeft="10dp"
@@ -70,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@id/pressLab"
                 android:layout_toRightOf="@id/pressLab"
-                style="@style/valData"/>
+                style="@style/valData" />
 
             <TextView
                 android:layout_marginLeft="10dp"
@@ -88,7 +89,7 @@
                 android:layout_alignBaseline="@id/humLab"
                 android:layout_toRightOf="@id/humLab"
                 android:layout_marginLeft="4dp"
-                style="@style/valData"/>
+                style="@style/valData" />
 
             <TextView
                 android:layout_marginLeft="10dp"
@@ -115,8 +116,8 @@
                 android:layout_alignBaseline="@id/windLab"
                 android:layout_toRightOf="@id/windSpeed"
                 android:layout_marginLeft="4dp"
-                style="@style/valData"/>
-       </RelativeLayout>
+                style="@style/valData" />
+        </RelativeLayout>
 
     </android.support.v7.widget.CardView>
 

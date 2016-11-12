@@ -1,7 +1,6 @@
 package com.example.nowfeed.network;
 
-import com.example.nowfeed.model.InstagramMediaPOJO;
-import com.example.nowfeed.model.InstagramUserPOJO;
+import com.example.nowfeed.model.Instagram;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -16,10 +15,10 @@ public interface InstagramService {
     String client_secret = "client_secret=8f6892d9452c4f6dafea86807d2db731";
     String access_token = "access_token=4093282801.1677ed0.19062e5199704d50a1380d6aad47cd48";
 
-    @GET ("users/self?" + access_token)
-    Call<InstagramUserPOJO> getSelf();
+    //@GET("users/self?" + access_token)
+    //Call<InstagramUserPOJO> getSelf();
 
-    @GET ("users/self/media/recent?"+ access_token)
-    Call<InstagramMediaPOJO> getRecentMedia();
+    @GET("users/self/media/recent?" + access_token)
+    Call<Instagram> getRecentMedia();
 
 }

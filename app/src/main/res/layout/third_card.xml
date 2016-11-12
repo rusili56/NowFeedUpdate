@@ -14,8 +14,7 @@
         android:layout_marginBottom="5dp"
         card_view:cardCornerRadius="@dimen/corner_dim"
         card_view:cardElevation="@dimen/cardview_default_elevation"
-        cardview:cardUseCompatPadding="true"
-        >
+        cardview:cardUseCompatPadding="true">
 
         <TextView
             android:id="@+id/notes"

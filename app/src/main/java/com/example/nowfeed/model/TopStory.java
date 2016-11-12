@@ -7,7 +7,7 @@ import java.util.List;
  * Created by rusili on 11/9/16.
  */
 
-public class TopStoriesPOJO {
+public class TopStory {
 
     String status;
     String copyright;

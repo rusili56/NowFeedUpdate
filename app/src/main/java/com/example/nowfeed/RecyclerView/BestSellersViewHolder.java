@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.nowfeed.R;
-import com.example.nowfeed.model.BestSellersPOJO;
+import com.example.nowfeed.model.BestSeller;
 
 /**
  * Created by Millochka on 10/31/16.
@@ -31,7 +31,7 @@ public class BestSellersViewHolder extends RecyclerView.ViewHolder {
         return inflater.inflate(R.layout.best_seller_card, parent, false);
     }
 
-    protected void onBind(BestSellersPOJO bsPOJO) {
+    protected void onBind(BestSeller bsPOJO) {
         tvTitle = (TextView) mView.findViewById(R.id.idTitle);
         tvAuthor = (TextView) mView.findViewById(R.id.idAuthor);
         tvDescription = (TextView) mView.findViewById(R.id.idDescription);

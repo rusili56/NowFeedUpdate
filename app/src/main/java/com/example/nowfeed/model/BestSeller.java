@@ -7,7 +7,7 @@ import java.util.List;
  * Created by rusili on 11/9/16.
  */
 
-public class BestSellersPOJO {
+public class BestSeller {
 
     String status;
     String copyright;

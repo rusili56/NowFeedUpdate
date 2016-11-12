@@ -12,9 +12,9 @@ import android.view.View;
 
 import com.example.nowfeed.RecyclerView.CardAdapter;
 import com.example.nowfeed.RecyclerView.InstagramFragment;
-import com.example.nowfeed.model.BestSellersPOJO;
-import com.example.nowfeed.model.InstagramMediaPOJO;
-import com.example.nowfeed.model.TopStoriesPOJO;
+import com.example.nowfeed.model.BestSeller;
+import com.example.nowfeed.model.Instagram;
+import com.example.nowfeed.model.TopStory;
 import com.example.nowfeed.model.Weather;
 import com.example.nowfeed.model.WeatherRespond;
 import com.example.nowfeed.network.InstagramService;
@@ -66,12 +66,12 @@ public class MainActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         InstagramService igService = retrofit.create(InstagramService.class);
-        Call<InstagramMediaPOJO> getRecentMedia = igService.getRecentMedia();
-        getRecentMedia.enqueue(new Callback<InstagramMediaPOJO>() {
+        Call<Instagram> getRecentMedia = igService.getRecentMedia();
+        getRecentMedia.enqueue(new Callback<Instagram>() {
             @Override
-            public void onResponse(Call<InstagramMediaPOJO> call, Response<InstagramMediaPOJO> response) {
+            public void onResponse(Call<Instagram> call, Response<Instagram> response) {
                 if (response.isSuccessful()) {
-                    InstagramMediaPOJO igMedia = response.body();
+                    Instagram igMedia = response.body();
                     mCardsData.add(igMedia);
                     instaPosition = mCardsData.size() - 1;
                     Log.d("igMedia1", response.body().getData().get(0).getImages().getlow_resolution().getUrl());
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<InstagramMediaPOJO> call, Throwable t) {
+            public void onFailure(Call<Instagram> call, Throwable t) {
                 Log.d("Instagram", "failure");
             }
         });
@@ -91,19 +91,19 @@ public class MainActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         NYTimesService igService = retrofit.create(NYTimesService.class);
-        Call<BestSellersPOJO> getRecentMedia = igService.getBestSellers();
-        getRecentMedia.enqueue(new Callback<BestSellersPOJO>() {
+        Call<BestSeller> getRecentMedia = igService.getBestSellers();
+        getRecentMedia.enqueue(new Callback<BestSeller>() {
             @Override
-            public void onResponse(Call<BestSellersPOJO> call, Response<BestSellersPOJO> response) {
+            public void onResponse(Call<BestSeller> call, Response<BestSeller> response) {
                 if (response.isSuccessful()) {
-                    BestSellersPOJO NYTBestSellers = response.body();
+                    BestSeller NYTBestSellers = response.body();
                     Log.d("NYT", response.body().getResults().get(0).getTitle());
                     mCardsData.add(NYTBestSellers);
                 }
             }
 
             @Override
-            public void onFailure(Call<BestSellersPOJO> call, Throwable t) {
+            public void onFailure(Call<BestSeller> call, Throwable t) {
                 Log.d("NYT", "failure: " + t.toString());
             }
         });
@@ -117,20 +117,20 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         NYTimesService igService = retrofit.create(NYTimesService.class);
-        Call<TopStoriesPOJO> getRecentMedia = igService.getTopStories();
-        getRecentMedia.enqueue(new Callback<TopStoriesPOJO>() {
+        Call<TopStory> getRecentMedia = igService.getTopStories();
+        getRecentMedia.enqueue(new Callback<TopStory>() {
 
             @Override
-            public void onResponse(Call<TopStoriesPOJO> call, Response<TopStoriesPOJO> response) {
+            public void onResponse(Call<TopStory> call, Response<TopStory> response) {
                 if (response.isSuccessful()) {
-                    TopStoriesPOJO NYTTopStories = response.body();
+                    TopStory NYTTopStories = response.body();
                     Log.d("NYT", response.body().getResults().get(0).getTitle());
                     mCardsData.add(NYTTopStories);
                 }
             }
 
             @Override
-            public void onFailure(Call<TopStoriesPOJO> call, Throwable t) {
+            public void onFailure(Call<TopStory> call, Throwable t) {
                 Log.d("NYT", "failure: " + t.toString());
             }
         });

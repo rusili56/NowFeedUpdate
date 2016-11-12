@@ -7,7 +7,7 @@ import java.util.List;
  * Created by rusili on 11/7/16.
  */
 
-public class InstagramMediaPOJO {
+public class Instagram {
 
     private Pagination pagination;
     private Meta meta;

@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.nowfeed.R;
-import com.example.nowfeed.model.InstagramMediaPOJO;
+import com.example.nowfeed.model.Instagram;
 import com.squareup.picasso.Picasso;
 
 import java.util.Random;
@@ -40,7 +40,7 @@ public class InstagramCardViewHolder extends RecyclerView.ViewHolder {
         return inflater.inflate(R.layout.first_card, parent, false);
     }
 
-    protected void onBind(InstagramMediaPOJO instagram) {
+    protected void onBind(Instagram instagram) {
         Random rand = new Random();
         int value = rand.nextInt(instagram.getData().size() - 1);
 

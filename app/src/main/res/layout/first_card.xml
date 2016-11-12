@@ -14,14 +14,12 @@
         android:layout_marginBottom="5dp"
         card_view:cardCornerRadius="@dimen/corner_dim"
         card_view:cardElevation="@dimen/cardview_default_elevation"
-        cardview:cardUseCompatPadding="true"
-        >
+        cardview:cardUseCompatPadding="true">
 
         <ImageView
             android:id="@+id/idCardImageView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
+            android:layout_height="match_parent" />
 
     </android.support.v7.widget.CardView>
 

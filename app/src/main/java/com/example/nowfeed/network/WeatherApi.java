@@ -1,6 +1,7 @@
 package com.example.nowfeed.network;
 
 import com.example.nowfeed.model.WeatherRespond;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
