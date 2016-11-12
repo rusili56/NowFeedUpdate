@@ -1,4 +1,4 @@
-package model;
+package com.example.nowfeed.model;
 
 /**
  * Created by Millochka on 11/7/16.

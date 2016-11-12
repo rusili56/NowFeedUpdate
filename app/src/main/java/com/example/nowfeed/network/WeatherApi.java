@@ -1,8 +1,8 @@
-package network;
+package com.example.nowfeed.network;
 
-import model.Forecast;
-import model.ForecastFiveDays;
-import model.WeatherRespond;
+import com.example.nowfeed.model.Forecast;
+import com.example.nowfeed.model.ForecastFiveDays;
+import com.example.nowfeed.model.WeatherRespond;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;

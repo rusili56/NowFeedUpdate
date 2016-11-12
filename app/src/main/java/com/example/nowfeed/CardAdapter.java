@@ -8,11 +8,11 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-import model.City;
-import model.Forecast;
-import model.ForecastFiveDays;
-import model.Instagram;
-import model.Weather;
+import com.example.nowfeed.model.City;
+import com.example.nowfeed.model.Forecast;
+import com.example.nowfeed.model.ForecastFiveDays;
+import com.example.nowfeed.model.Instagram;
+import com.example.nowfeed.model.Weather;
 
 import static android.content.ContentValues.TAG;
 

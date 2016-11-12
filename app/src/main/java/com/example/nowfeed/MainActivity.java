@@ -8,13 +8,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.nowfeed.model.Forecast;
+import com.example.nowfeed.model.ForecastFiveDays;
+import com.example.nowfeed.model.Instagram;
+import com.example.nowfeed.network.WeatherApi;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Forecast;
-import model.ForecastFiveDays;
-import model.Instagram;
-import network.WeatherApi;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
