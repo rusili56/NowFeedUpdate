@@ -34,7 +34,7 @@ public class FirstCardViewHolder extends RecyclerView.ViewHolder {
     }
 
     protected  void onBind(Instagram instagram){
-        mTitle.setText(instagram.getmInstagramTitle());
+        mTitle.setText(instagram.getTitle());
 
     }
 

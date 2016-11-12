@@ -1,13 +1,14 @@
 package model;
 
 /**
- * Created by Millochka on 11/2/16.
+ * Created by Millochka on 11/11/16.
  */
 
 public class Instagram {
-    private String mInstagramTitle="Instargram Picture";
 
-    public String getmInstagramTitle() {
-        return mInstagramTitle;
+    String title = "This is instagram";
+
+    public String getTitle() {
+        return title;
     }
 }

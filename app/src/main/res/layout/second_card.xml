@@ -28,94 +28,172 @@
                 style="?android:attr/textAppearanceMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"/>
+                android:layout_centerHorizontal="true"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_below="@id/cityText">
+                <LinearLayout
+                    android:id="@+id/day1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/weather_icon"
+                android:id="@+id/weather_icon1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_below="@id/cityText" />
+                 />
 
             <TextView
                 android:layout_marginLeft="10dp"
-                android:id="@+id/weather_discription"
+                android:id="@+id/weather_discription1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/weather_icon"
-                android:layout_alignLeft="@id/weather_icon"
+                android:layout_below="@id/weather_icon1"
+                android:layout_alignLeft="@id/weather_icon1"
                 />
             <TextView
-                android:id="@+id/temp"
+                android:id="@+id/temp1"
                 style="@style/tempStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
-                android:layout_alignBaseline="@id/weather_discription"
-                android:layout_toRightOf="@id/weather_discription"/>
+                android:layout_alignBaseline="@id/weather_discription1"
+                android:layout_toRightOf="@id/weather_discription1"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/day2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:orientation="vertical"
+                   >
 
-            <TextView
-                android:layout_marginLeft="10dp"
-                android:id="@+id/pressLab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@id/weather_discription"
-                android:text="Pressure"
-                android:layout_marginTop="15dp" />
+                    <ImageView
+                        android:id="@+id/weather_icon2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                         />
 
-            <TextView
-                android:id="@+id/press"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/pressLab"
-                android:layout_toRightOf="@id/pressLab"
-                style="@style/valData"/>
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:id="@+id/weather_discription2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/weather_icon2"
+                        android:layout_alignLeft="@id/weather_icon2"
+                        />
+                    <TextView
+                        android:id="@+id/temp2"
+                        style="@style/tempStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_alignBaseline="@id/weather_discription2"
+                        android:layout_toRightOf="@id/weather_discription2"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/day3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:orientation="vertical">
 
-            <TextView
-                android:layout_marginLeft="10dp"
-                android:id="@+id/humLab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@id/pressLab"
-                android:text="Humidity" />
+                    <ImageView
+                        android:id="@+id/weather_icon3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                         />
 
-            <TextView
-                android:id="@+id/hum"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/humLab"
-                android:layout_toRightOf="@id/humLab"
-                android:layout_marginLeft="4dp"
-                style="@style/valData"/>
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:id="@+id/weather_discription3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/weather_icon3"
+                        android:layout_alignLeft="@id/weather_icon3"
+                        />
+                    <TextView
+                        android:id="@+id/temp3"
+                        style="@style/tempStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_alignBaseline="@id/weather_discription3"
+                        android:layout_toRightOf="@id/weather_discription3"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/day4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:orientation="vertical">
 
-            <TextView
-                android:layout_marginLeft="10dp"
-                android:id="@+id/windLab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@id/humLab"
-                android:text="Wind" />
+                    <ImageView
+                        android:id="@+id/weather_icon4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                         />
 
-            <TextView
-                android:id="@+id/windSpeed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/windLab"
-                android:layout_toRightOf="@id/windLab"
-                android:layout_marginLeft="4dp"
-                style="@style/valData" />
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:id="@+id/weather_discription4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/weather_icon4"
+                        android:layout_alignLeft="@id/weather_icon4"
+                        />
+                    <TextView
+                        android:id="@+id/temp4"
+                        style="@style/tempStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_alignBaseline="@id/weather_discription4"
+                        android:layout_toRightOf="@id/weather_discription4"/>
+                </LinearLayout>
 
-            <TextView
-                android:id="@+id/windDeg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/windLab"
-                android:layout_toRightOf="@id/windSpeed"
-                android:layout_marginLeft="4dp"
-                style="@style/valData"/>
+                <LinearLayout
+                    android:id="@+id/day5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/weather_icon5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                         />
+
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:id="@+id/weather_discription5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/weather_icon5"
+                        android:layout_alignLeft="@id/weather_icon5"
+                        />
+                    <TextView
+                        android:id="@+id/temp5"
+                        style="@style/tempStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_alignBaseline="@id/weather_discription5"
+                        android:layout_toRightOf="@id/weather_discription5"/>
+                </LinearLayout>
+
+            </LinearLayout>
        </RelativeLayout>
 
     </android.support.v7.widget.CardView>
