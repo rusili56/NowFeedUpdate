@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.nowfeed.model.BestSellersPOJO;
 import com.example.nowfeed.model.TopStoriesPOJO;
 import com.squareup.picasso.Picasso;
 
@@ -24,16 +23,16 @@ public class TopStoriesViewHolder extends RecyclerView.ViewHolder {
 
     public TopStoriesViewHolder(ViewGroup parent) {
         super(inflateView(parent));
-        mView=itemView;
+        mView = itemView;
     }
 
 
-    public static View inflateView(ViewGroup parent){
-        LayoutInflater inflater= LayoutInflater.from(parent.getContext());
-        return inflater.inflate(R.layout.topviewed_card, parent,false);
+    public static View inflateView(ViewGroup parent) {
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        return inflater.inflate(R.layout.topviewed_card, parent, false);
     }
 
-    protected  void onBind(TopStoriesPOJO tsPOJO){
+    protected void onBind(TopStoriesPOJO tsPOJO) {
         ivThumbnail = (ImageView) mView.findViewById(R.id.idtopviewedthumbnail);
         tvTitle = (TextView) mView.findViewById(R.id.idtopviewedtitle);
 

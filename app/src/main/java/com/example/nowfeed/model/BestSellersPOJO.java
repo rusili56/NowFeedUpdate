@@ -14,15 +14,15 @@ public class BestSellersPOJO {
     int num_results;
     List<results> results = new ArrayList<>();
 
-    public String getStatus(){
+    public String getStatus() {
         return this.status;
     }
 
-    public List<results> getResults(){
+    public List<results> getResults() {
         return this.results;
     }
 
-    public class results{
+    public class results {
         String title;
         String description;
         String contributor;
@@ -34,24 +34,24 @@ public class BestSellersPOJO {
         List<ranks_history> rankshistory = new ArrayList<>();
         List<reviews> reviews = new ArrayList<>();
 
-        public String getTitle(){
+        public String getTitle() {
             return this.title;
         }
 
-        public String getAuthor(){
+        public String getAuthor() {
             return this.author;
         }
 
-        public String getDescription(){
+        public String getDescription() {
             return this.description;
         }
 
-        public class isbns{
+        public class isbns {
             String isbn10;
             String isbn13;
         }
 
-        public class ranks_history{
+        public class ranks_history {
             String primary_isbn10;
             String primary_isbn13;
             int rank;
@@ -64,7 +64,7 @@ public class BestSellersPOJO {
             int dagger;
         }
 
-        public class reviews{
+        public class reviews {
             String book_review_link;
             String first_chapter_link;
             String sunday_review_link;

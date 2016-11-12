@@ -16,15 +16,15 @@ public class TopStoriesPOJO {
     int num_results;
     List<results> results = new ArrayList<>();
 
-    public String getStatus(){
+    public String getStatus() {
         return this.status;
     }
 
-    public List<results> getResults(){
+    public List<results> getResults() {
         return this.results;
     }
 
-    public class results{
+    public class results {
         String section;
         String subsection;
         String title;
@@ -44,35 +44,35 @@ public class TopStoriesPOJO {
         List<multimedia> multimedia = new ArrayList<>();
         String short_url;
 
-        public String getTitle(){
+        public String getTitle() {
             return this.title;
         }
 
-        public String getByline(){
+        public String getByline() {
             return this.byline;
         }
 
-        public List<multimedia> getMultimedia(){
+        public List<multimedia> getMultimedia() {
             return multimedia;
         }
 
-        public class des_facet{
+        public class des_facet {
 
         }
 
-        public class org_facet{
+        public class org_facet {
 
         }
 
-        public class per_facet{
+        public class per_facet {
 
         }
 
-        public class geo_facet{
+        public class geo_facet {
 
         }
 
-        public class multimedia{
+        public class multimedia {
             String url;
             String format;
             int height;
@@ -82,7 +82,7 @@ public class TopStoriesPOJO {
             String caption;
             String copyright;
 
-            public String getUrl(){
+            public String getUrl() {
                 return this.url;
             }
         }
