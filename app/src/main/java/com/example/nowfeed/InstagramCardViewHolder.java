@@ -23,15 +23,12 @@ public class InstagramCardViewHolder extends RecyclerView.ViewHolder {
     View mView;
     ImageView ivMedia;
     private FragmentManager supportFragmentManager;
-    Activity act;
     static InstagramFragment instafrag = new InstagramFragment();
     String sUrl;
-    boolean iFragOpen = false;
 
-    public InstagramCardViewHolder(ViewGroup parent, Activity aInput) {
+    public InstagramCardViewHolder(ViewGroup parent) {
         super(inflateView(parent));
         mView = itemView;
-        this.act = aInput;
     }
 
     public static View inflateView(ViewGroup parent) {

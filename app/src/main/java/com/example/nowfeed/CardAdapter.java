@@ -30,18 +30,17 @@ import static android.content.ContentValues.TAG;
 public class CardAdapter extends RecyclerView.Adapter implements ViewGroup.OnClickListener {
 
     private List<Object> items;
-    Activity act;
     static InstagramFragment instafrag = new InstagramFragment();
     static FragmentManager fragmentManager;
     static boolean isFragOpen = false;
 
     public final int INSTAGRAM = 0, WEATHER = 1, NOTES = 2, TOPSTORIES = 3, BESTSELLERS = 4;
 
-    public CardAdapter(List<Object> items, Activity aInput) {
-        this.act = aInput;
+    public CardAdapter(List<Object> items, FragmentManager fmInput) {
         this.items = items;
-        fragmentManager = act.getFragmentManager();
-    FragmentManager fragmentManager;
+        this.fragmentManager = fmInput;
+    }
+
     private final String WDESCRIPTION = "WDESCRIPTION";
     private final String  WCITY = "WCITY";
     private final String WICON = "WICON";
@@ -49,24 +48,16 @@ public class CardAdapter extends RecyclerView.Adapter implements ViewGroup.OnCli
     private final String WHUMIDITY = "WHUMIDITY";
     private final String WTEMP="WTEMP";
 
-
-    public CardAdapter(List<Object> items, FragmentManager fragmentManager) {
-        this.fragmentManager=fragmentManager;
-        this.items=items;
-
-    }
-
-
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         RecyclerView.ViewHolder viewHolder;
 
         switch (viewType) {
             case INSTAGRAM:
-                viewHolder = new InstagramCardViewHolder(parent, act);
+                viewHolder = new InstagramCardViewHolder(parent);
                 break;
             case WEATHER:
-                viewHolder = new WeatherCardViewHolder(parent);
+                viewHolder = new SecondCardViewHolder(parent);
                 break;
             case TOPSTORIES:
                 viewHolder = new TopStoriesViewHolder(parent);
@@ -115,14 +106,10 @@ public class CardAdapter extends RecyclerView.Adapter implements ViewGroup.OnCli
                 bestSellersCard.onBind((BestSeller) items.get(position));
                 break;
             default:
-                ThirdCardViewHolder thirdCard = (ThirdCardViewHolder) holder;
-                thirdCard.onBind((String)items.get(position));
-
+//                ThirdCardViewHolder thirdCard = (ThirdCardViewHolder) holder;
+//                thirdCard.onBind((String)items.get(position));
                 break;
-
         }
-
-
     }
 
         @Override
@@ -135,7 +122,7 @@ public class CardAdapter extends RecyclerView.Adapter implements ViewGroup.OnCli
     public int getItemViewType(int position) {
         if (items.get(position) instanceof Instagram) {
             return INSTAGRAM;
-        } else if (items.get(position) instanceof WeatherRespond) {
+        } else if (items.get(position) instanceof ForecastFiveDays) {
             return WEATHER;
         } else if (items.get(position) instanceof BestSeller) {
             return BESTSELLERS;
@@ -151,7 +138,6 @@ public class CardAdapter extends RecyclerView.Adapter implements ViewGroup.OnCli
     public void onClick(View view) {
 
         WeatherFragment detailedWeather= new WeatherFragment();
-        MainActivity.setFragment(true);
         int itemId=view.getId();
         switch (itemId){
             case R.id.day1:
@@ -166,10 +152,8 @@ public class CardAdapter extends RecyclerView.Adapter implements ViewGroup.OnCli
 
                 break;
             case R.id.day3:
-
                 detailedWeather.setArguments(retrieveWeatherDetails(2, (ForecastFiveDays) items.get(1)));
                 fragmentManager.beginTransaction().add(R.id.weather_CV,detailedWeather,TAG).commit();
-
                 break;
             case R.id.day4:
                 detailedWeather.setArguments(retrieveWeatherDetails(3, (ForecastFiveDays) items.get(1)));
@@ -201,7 +185,6 @@ public class CardAdapter extends RecyclerView.Adapter implements ViewGroup.OnCli
      bundle.putString(WTEMP,Double.toString(temperature)+" ºF");
      bundle.putString(WPRESSURE,Double.toString(forecast.get(index).getPressure())+" hPa");
      bundle.putString(WHUMIDITY,Double.toString(forecast.get(index).getHumidity())+" %");
-
 
      return bundle;
 
