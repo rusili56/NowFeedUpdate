@@ -19,7 +19,6 @@ import java.util.List;
 
 import static android.content.ContentValues.TAG;
 
-import com.example.nowfeed.model.InstagramUserPOJO;
 import com.example.nowfeed.model.WeatherRespond;
 
 import java.util.List;
@@ -37,7 +36,6 @@ public class CardAdapter extends RecyclerView.Adapter implements ViewGroup.OnCli
     public final int INSTAGRAM = 0, WEATHER = 1, NOTES = 2, TOPSTORIES = 3, BESTSELLERS = 4;
 
     public static final String SHARED_NAME= "mynotes";
-    Activity activity;
 
     public CardAdapter(List<Object> items, FragmentManager fmInput) {
         this.items = items;
@@ -73,8 +71,6 @@ public class CardAdapter extends RecyclerView.Adapter implements ViewGroup.OnCli
                 break;
         }
         return viewHolder;
-
-
     }
 
     @Override
@@ -96,7 +92,6 @@ public class CardAdapter extends RecyclerView.Adapter implements ViewGroup.OnCli
                 secondCard.onBind((ForecastFiveDays) items.get(position));
                 initOnClick(secondCard);
                 onClick(secondCard.mView);
-
                 break;
             case TOPSTORIES:
                 TopStoriesViewHolder topviewedCard = (TopStoriesViewHolder) holder;
@@ -107,14 +102,9 @@ public class CardAdapter extends RecyclerView.Adapter implements ViewGroup.OnCli
                 bestSellersCard.onBind((BestSeller) items.get(position));
                 break;
             default:
-                ThirdCardViewHolder thirdCard = (ThirdCardViewHolder) holder;
-                thirdCard.onBind((String)items.get(position));
-
                 break;
 
         }
-
-
     }
 
     @Override

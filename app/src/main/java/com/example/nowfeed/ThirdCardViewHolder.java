@@ -46,9 +46,6 @@ public class ThirdCardViewHolder extends RecyclerView.ViewHolder implements View
         mAdd.setOnClickListener(this);
         mSave = (Button) mView.findViewById(R.id.save_notes);
         mSave.setOnClickListener(this);
-        mList = (Button) mView.findViewById(R.id.list_notes);
-        mList.setOnClickListener(this);
-
     }
 
     public static View inflateView(ViewGroup parent) {

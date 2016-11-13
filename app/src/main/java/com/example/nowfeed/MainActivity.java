@@ -4,75 +4,70 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.widget.Button;
 import android.view.View;
+import android.widget.Toast;
 
-import com.example.nowfeed.model.Weather;
-import com.example.nowfeed.model.WeatherRespond;
-import com.example.nowfeed.network.InstagramAPIs;
 import com.example.nowfeed.network.WeatherApi;
 import com.example.nowfeed.model.BestSeller;
-import com.example.nowfeed.model.Forecast;
 import com.example.nowfeed.model.ForecastFiveDays;
 import com.example.nowfeed.model.Instagram;
 import com.example.nowfeed.model.TopStory;
 import com.example.nowfeed.network.InstagramService;
 import com.example.nowfeed.network.NYTimesService;
-import com.example.nowfeed.network.WeatherApi;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import com.example.nowfeed.model.Weather;
-import com.example.nowfeed.model.WeatherRespond;
-import com.example.nowfeed.network.WeatherApi;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements GestureDetector.OnGestureListener{
     InstagramFragment instafrag = new InstagramFragment();
+    VideoFragment vidfrag = new VideoFragment();
 
     List<Object> mCardsData = new ArrayList<>();
     private static final String TAG = "MainActivity";
     SharedPreferences sharedPrefs;
-    List<Object> mCardsData = new ArrayList<>();
     Set<String> getAddedNotes, getSavedNotes;
+    private GestureDetectorCompat mDetector;
 
-    Button refresh;
     private static final String API_KEY = "62f136aaf813f7d74fabcdfdb0fcb3ba";
     private static final String LOCATION = "NEWYORK,USA";
     public Retrofit mRetrofit;
     WeatherApi mWeatherApi;
 
     RecyclerView recyclerView;
-    public static Drawable mWeatherIcon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mCardsData.add("Mila's Notes");
-        WeatherAPI();
-        InstagramAPIs igAPI = new InstagramAPIs(this);
-        igAPI.getUserID();
+        mDetector = new GestureDetectorCompat(this,this);
 
-        mCardsData.add("My notes");
+        if (isNetworkOnline() == false){
+            Toast toast = Toast.makeText(this, "Please check your network. App will only have partial functionality", Toast.LENGTH_LONG);
+            toast.show();
+        }
+
+//        //Hyun
+          mCardsData.add("My notes");
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             // If the screen is now in landscape mode, we can show the
             sharedPrefs = getSharedPreferences("Stuff", MODE_PRIVATE);
@@ -81,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
             ThirdCardViewHolder.setSavedNotes(getSavedNotes);
             ThirdCardViewHolder.setAddedNotes(getAddedNotes);
         }
+        WeatherAPI();
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -96,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 initializeRecView();
             }
-        }, 2000);
+        }, 4000);
     }
 
     public void InstagramAPI() {
@@ -118,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Instagram> call, Throwable t) {
+
             }
         });
     }
@@ -175,38 +172,14 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<ForecastFiveDays> call, Response<ForecastFiveDays> response) {
                 if (response.isSuccessful()) {
                     ForecastFiveDays weatherRespond = response.body();
-                    List<Forecast> weatherForcast = weatherRespond.getList();
                     mCardsData.add(weatherRespond);
-                    //mCardsData.add(new Instagram());
-                    initializeRecView();
-//                    URL imageURL= null;
-//                    try {
-//                        imageURL = new URL("http://openweathermap.org/img/w/"+weather.get(0).getIcon()+".png");
-//                    } catch (MalformedURLException e) {
-//                        e.printStackTrace();
-//                    }
-//
-//                    try {
-//                        InputStream content=(InputStream)imageURL.getContent();
-//                        mWeatherIcon= Drawable.createFromStream(content,"src");
-//
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-
-
                 }
-
             }
 
             @Override
             public void onFailure(Call<ForecastFiveDays> call, Throwable t) {
-
             }
         });
-
-
-
     }
 
     public void initializeRecView() {
@@ -220,16 +193,6 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction ft = fm.beginTransaction();
         ft.remove(CardAdapter.getInstaFrag()).commit();
     }
-    public void getWeatherPicture(String icon) throws MalformedURLException {
-
-        URL imageURL = new URL("http://openweathermap.org/img/w/");
-
-        try {
-            InputStream content = (InputStream) imageURL.getContent();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     protected void onDestroy() {
@@ -241,4 +204,61 @@ public class MainActivity extends AppCompatActivity {
         editor.apply();
     }
 
+    public boolean isNetworkOnline() {
+        boolean status=false;
+        try{
+            ConnectivityManager cm = (ConnectivityManager) getSystemService(this.CONNECTIVITY_SERVICE);
+            NetworkInfo netInfo = cm.getNetworkInfo(0);
+            if (netInfo != null && netInfo.getState()==NetworkInfo.State.CONNECTED) {
+                status= true;
+            }else {
+                netInfo = cm.getNetworkInfo(1);
+                if(netInfo!=null && netInfo.getState()==NetworkInfo.State.CONNECTED)
+                    status= true;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        return status;
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event){
+        this.mDetector.onTouchEvent(event);
+        // Be sure to call the superclass implementation
+        return super.onTouchEvent(event);
+    }
+
+    @Override
+    public boolean onDown(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public void onShowPress(MotionEvent motionEvent) {
+
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
+        return false;
+    }
+
+    @Override
+    public void onLongPress(MotionEvent motionEvent) {
+        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.ppap);
+        mediaPlayer.start();
+    }
+
+    @Override
+    public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
+        this.recreate();
+        return false;
+    }
 }
