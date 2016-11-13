@@ -1,40 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:cardview="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/notes_CV"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
         android:layout_marginBottom="5dp"
         card_view:cardCornerRadius="@dimen/corner_dim"
         card_view:cardElevation="@dimen/cardview_default_elevation"
         cardview:cardUseCompatPadding="true">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <Button
-                android:id="@+id/plus"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="7dp"
-                android:layout_marginRight="6dp"
-                android:background="@drawable/plus_button"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/notes"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content"
+                android:fontFamily="cursive"
+                android:gravity="center|top"
+                android:text="MY NOTES"
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
 
-        </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
+                <EditText
+                    android:id="@+id/edit_notes"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="0.6"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/pinkstrip_memo2"
+                    android:text=" Write some notes"
+                    android:gravity="top"
+                    android:fontFamily="sans-serif"
+                    android:textDirection="firstStrongLtr"
+                    android:textColor="#fff" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/add_notes"
+                        android:background="@drawable/pink_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <Button
+                        android:id="@+id/save_notes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="save" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
     </android.support.v7.widget.CardView>
 
 </LinearLayout>

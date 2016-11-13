@@ -2,6 +2,7 @@ package com.example.nowfeed;
 
 import android.app.FragmentManager;
 import android.os.Bundle;
+import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,10 @@ import java.util.List;
 
 import static android.content.ContentValues.TAG;
 
+import com.example.nowfeed.model.InstagramUserPOJO;
+import com.example.nowfeed.model.WeatherRespond;
+
+import java.util.List;
 
 /**
  * Created by Millochka on 10/30/16.
@@ -30,6 +35,9 @@ public class CardAdapter extends RecyclerView.Adapter implements ViewGroup.OnCli
     static boolean isFragOpen = false;
 
     public final int INSTAGRAM = 0, WEATHER = 1, NOTES = 2, TOPSTORIES = 3, BESTSELLERS = 4;
+
+    public static final String SHARED_NAME= "mynotes";
+    Activity activity;
 
     public CardAdapter(List<Object> items, FragmentManager fmInput) {
         this.items = items;
@@ -61,10 +69,12 @@ public class CardAdapter extends RecyclerView.Adapter implements ViewGroup.OnCli
                 viewHolder = new BestSellersViewHolder(parent);
                 break;
             default:
-                viewHolder = new NotesCardViewHolder(parent);
+                viewHolder = new ThirdCardViewHolder(parent);
                 break;
         }
         return viewHolder;
+
+
     }
 
     @Override
@@ -97,10 +107,14 @@ public class CardAdapter extends RecyclerView.Adapter implements ViewGroup.OnCli
                 bestSellersCard.onBind((BestSeller) items.get(position));
                 break;
             default:
-//                ThirdCardViewHolder thirdCard = (ThirdCardViewHolder) holder;
-//                thirdCard.onBind((String)items.get(position));
+                ThirdCardViewHolder thirdCard = (ThirdCardViewHolder) holder;
+                thirdCard.onBind((String)items.get(position));
+
                 break;
+
         }
+
+
     }
 
     @Override
