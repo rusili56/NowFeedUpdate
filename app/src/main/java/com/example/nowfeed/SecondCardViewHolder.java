@@ -67,9 +67,5 @@ public class SecondCardViewHolder extends RecyclerView.ViewHolder {
         mHum.setText(Double.toString(weatherMain.getHumidity())+" %");
         mWindSpeed.setText(wind.getSpeed()+" mps" + " "+ wind.getDeg()+"º");
 
-
-
-
-
     }
 }

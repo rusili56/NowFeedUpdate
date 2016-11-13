@@ -1,12 +1,13 @@
 package com.example.nowfeed;
 
+import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
-import java.util.List;
-
 import com.example.nowfeed.model.InstagramUserPOJO;
 import com.example.nowfeed.model.WeatherRespond;
+
+import java.util.List;
 
 /**
  * Created by Millochka on 10/30/16.
@@ -14,17 +15,20 @@ import com.example.nowfeed.model.WeatherRespond;
 public class CardAdapter extends RecyclerView.Adapter {
 
     private List<Object> items;
-
     private final int  INSTAGRAM = 0,WEATHER = 1,NOTES=2 ;
 
-    public CardAdapter(List<Object> items) {
+    public static final String SHARED_NAME= "mynotes";
+    Activity activity;
+
+
+    public CardAdapter(List<Object> items, Activity activity) {
         this.items=items;
-
+        this.activity = activity;
     }
-
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
         RecyclerView.ViewHolder viewHolder;
 
         switch (viewType) {
@@ -39,8 +43,6 @@ public class CardAdapter extends RecyclerView.Adapter {
                 break;
         }
         return viewHolder;
-
-
     }
 
     @Override
@@ -48,30 +50,20 @@ public class CardAdapter extends RecyclerView.Adapter {
         switch (getItemViewType(position)) {
             case INSTAGRAM:
                 FirstCardViewHolder firstCard= (FirstCardViewHolder) holder;
-
-                //firstCard.onBind((Instagram) items.get(position));
+//                firstCard.onBind((Instagram) items.get(position));
                 break;
-            case WEATHER:
 
+            case WEATHER:
                 SecondCardViewHolder secondCard = (SecondCardViewHolder) holder;
                 secondCard.onBind((WeatherRespond) items.get(position));
                 break;
-            default:
-                ThirdCardViewHolder thirdCard = (ThirdCardViewHolder) holder;
-                thirdCard.onBind((String)items.get(position));
-
-                break;
-
         }
-
-
     }
 
         @Override
         public int getItemCount () {
             return items.size();
         }
-
 
         @Override
         public int getItemViewType ( int position){
