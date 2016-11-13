@@ -25,6 +25,4 @@ public class Weather {
     public int getId() {
         return id;
     }
-
-
 }

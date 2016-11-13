@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.nowfeed.R;
 import com.example.nowfeed.model.TopStory;
 import com.squareup.picasso.Picasso;
 

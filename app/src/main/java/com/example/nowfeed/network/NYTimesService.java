@@ -20,5 +20,4 @@ public interface NYTimesService {
 
     @GET("topstories/v2/home.json?" + TopStoriesAPIKEY)
     Call<TopStory> getTopStories();
-
 }

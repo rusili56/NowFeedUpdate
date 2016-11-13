@@ -15,14 +15,14 @@ import com.squareup.picasso.Picasso;
 /**
  * Created by Millochka on 11/8/16.
  */
-public class WeatherFragment extends Fragment implements ViewGroup.OnClickListener{
+public class WeatherFragment extends Fragment implements ViewGroup.OnClickListener {
 
     private final String WDESCRIPTION = "WDESCRIPTION";
-    private final String  WCITY = "WCITY";
+    private final String WCITY = "WCITY";
     private final String WICON = "WICON";
-    private final String WPRESSURE= "WPRESSURE";
+    private final String WPRESSURE = "WPRESSURE";
     private final String WHUMIDITY = "WHUMIDITY";
-    private final String WTEMP="WTEMP";
+    private final String WTEMP = "WTEMP";
 
     private TextView mDescription;
     private TextView mCity;
@@ -37,18 +37,20 @@ public class WeatherFragment extends Fragment implements ViewGroup.OnClickListen
                              Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        View view = inflater.inflate(R.layout.weather_details,container, false);
+        View view = inflater.inflate(R.layout.weather_details, container, false);
 
-    return view;}
+        return view;
+    }
 
-@Override
-public void onViewCreated(View view, Bundle savedInstanceState) {
-    super.onViewCreated(view,savedInstanceState);
-    initTextView(view);
-    Picasso.with(view.getContext()).load(getArguments().getString(WICON)).resize(170,170).centerCrop().into(mIcon);
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initTextView(view);
+        Picasso.with(view.getContext()).load(getArguments().getString(WICON)).resize(170, 170).centerCrop().into(mIcon);
 
 
-}
+    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -61,23 +63,23 @@ public void onViewCreated(View view, Bundle savedInstanceState) {
 
     }
 
-    public void initTextView(View view){
+    public void initTextView(View view) {
 
 
-         mDescription=(TextView) view.findViewById(R.id.weather_discription);
-        mCity=(TextView) view.findViewById(R.id.cityText);
-        mIcon=(ImageView) view.findViewById(R.id.weather_icon);
-        mTemp=(TextView) view.findViewById(R.id.temp);
-         mPressure=(TextView) view.findViewById(R.id.press);
-         mHumidity=(TextView) view.findViewById(R.id.hum);
-        mWeather=(CardView) view.findViewById(R.id.weather_fragment);
+        mDescription = (TextView) view.findViewById(R.id.weather_discription);
+        mCity = (TextView) view.findViewById(R.id.cityText);
+        mIcon = (ImageView) view.findViewById(R.id.weather_icon);
+        mTemp = (TextView) view.findViewById(R.id.temp);
+        mPressure = (TextView) view.findViewById(R.id.press);
+        mHumidity = (TextView) view.findViewById(R.id.hum);
+        mWeather = (CardView) view.findViewById(R.id.weather_fragment);
 
     }
 
 
     @Override
     public void onClick(View view) {
-        Intent intent= new Intent(view.getContext(), MainActivity.class);
+        Intent intent = new Intent(view.getContext(), MainActivity.class);
         startActivity(intent);
 
     }

@@ -70,6 +70,5 @@ public class BestSeller {
             String sunday_review_link;
             String article_chapter_link;
         }
-
     }
 }

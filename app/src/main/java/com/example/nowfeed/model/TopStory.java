@@ -57,19 +57,15 @@ public class TopStory {
         }
 
         public class des_facet {
-
         }
 
         public class org_facet {
-
         }
 
         public class per_facet {
-
         }
 
         public class geo_facet {
-
         }
 
         public class multimedia {
@@ -86,6 +82,5 @@ public class TopStory {
                 return this.url;
             }
         }
-
     }
 }

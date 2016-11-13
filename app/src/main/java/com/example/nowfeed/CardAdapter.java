@@ -1,7 +1,5 @@
 package com.example.nowfeed;
 
-import android.app.Activity;
-import android.app.FragmentManager;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -9,17 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.nowfeed.model.BestSeller;
-import com.example.nowfeed.model.Instagram;
-import com.example.nowfeed.model.TopStory;
-import com.example.nowfeed.model.WeatherRespond;
-
-import java.util.List;
-
 import com.example.nowfeed.model.City;
 import com.example.nowfeed.model.Forecast;
 import com.example.nowfeed.model.ForecastFiveDays;
 import com.example.nowfeed.model.Instagram;
+import com.example.nowfeed.model.TopStory;
 import com.example.nowfeed.model.Weather;
+
+import java.util.List;
 
 import static android.content.ContentValues.TAG;
 
@@ -42,11 +37,11 @@ public class CardAdapter extends RecyclerView.Adapter implements ViewGroup.OnCli
     }
 
     private final String WDESCRIPTION = "WDESCRIPTION";
-    private final String  WCITY = "WCITY";
+    private final String WCITY = "WCITY";
     private final String WICON = "WICON";
-    private final String WPRESSURE= "WPRESSURE";
+    private final String WPRESSURE = "WPRESSURE";
     private final String WHUMIDITY = "WHUMIDITY";
-    private final String WTEMP="WTEMP";
+    private final String WTEMP = "WTEMP";
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -70,8 +65,6 @@ public class CardAdapter extends RecyclerView.Adapter implements ViewGroup.OnCli
                 break;
         }
         return viewHolder;
-
-
     }
 
     @Override
@@ -89,10 +82,8 @@ public class CardAdapter extends RecyclerView.Adapter implements ViewGroup.OnCli
                 });
                 break;
             case WEATHER:
-
                 SecondCardViewHolder secondCard = (SecondCardViewHolder) holder;
                 secondCard.onBind((ForecastFiveDays) items.get(position));
-
                 initOnClick(secondCard);
                 onClick(secondCard.mView);
 
@@ -112,10 +103,10 @@ public class CardAdapter extends RecyclerView.Adapter implements ViewGroup.OnCli
         }
     }
 
-        @Override
-        public int getItemCount () {
-            return items.size();
-        }
+    @Override
+    public int getItemCount() {
+        return items.size();
+    }
 
 
     @Override
@@ -137,66 +128,56 @@ public class CardAdapter extends RecyclerView.Adapter implements ViewGroup.OnCli
     @Override
     public void onClick(View view) {
 
-        WeatherFragment detailedWeather= new WeatherFragment();
-        int itemId=view.getId();
-        switch (itemId){
+        WeatherFragment detailedWeather = new WeatherFragment();
+        int itemId = view.getId();
+        switch (itemId) {
             case R.id.day1:
-
                 detailedWeather.setArguments(retrieveWeatherDetails(0, (ForecastFiveDays) items.get(1)));
-                fragmentManager.beginTransaction().add(R.id.weather_CV,detailedWeather,TAG).commit();
-
+                fragmentManager.beginTransaction().add(R.id.weather_CV, detailedWeather, TAG).commit();
                 break;
             case R.id.day2:
                 detailedWeather.setArguments(retrieveWeatherDetails(1, (ForecastFiveDays) items.get(1)));
-                fragmentManager.beginTransaction().add(R.id.weather_CV,detailedWeather,TAG).commit();
-
+                fragmentManager.beginTransaction().add(R.id.weather_CV, detailedWeather, TAG).commit();
                 break;
             case R.id.day3:
                 detailedWeather.setArguments(retrieveWeatherDetails(2, (ForecastFiveDays) items.get(1)));
-                fragmentManager.beginTransaction().add(R.id.weather_CV,detailedWeather,TAG).commit();
+                fragmentManager.beginTransaction().add(R.id.weather_CV, detailedWeather, TAG).commit();
                 break;
             case R.id.day4:
                 detailedWeather.setArguments(retrieveWeatherDetails(3, (ForecastFiveDays) items.get(1)));
-                fragmentManager.beginTransaction().add(R.id.weather_CV,detailedWeather,TAG).commit();
-
+                fragmentManager.beginTransaction().add(R.id.weather_CV, detailedWeather, TAG).commit();
                 break;
             case R.id.day5:
                 detailedWeather.setArguments(retrieveWeatherDetails(4, (ForecastFiveDays) items.get(1)));
-                fragmentManager.beginTransaction().add(R.id.weather_CV,detailedWeather,TAG).commit();
-
+                fragmentManager.beginTransaction().add(R.id.weather_CV, detailedWeather, TAG).commit();
                 break;
         }
-
-
     }
 
 
+    public Bundle retrieveWeatherDetails(int index, ForecastFiveDays weatherRespond) {
 
- public Bundle retrieveWeatherDetails(int index, ForecastFiveDays weatherRespond){
+        City city = weatherRespond.getCity();
+        List<Forecast> forecast = weatherRespond.getList();
+        Bundle bundle = new Bundle();
+        Weather weather = forecast.get(index).getWeather().get(0);
+        bundle.putString(WDESCRIPTION, weather.getMain() + "(" + weather.getDescription() + ")");
+        bundle.putString(WCITY, city.getName() + "," + city.getCountry());
+        bundle.putString(WICON, "http://openweathermap.org/img/w/" + weather.getIcon() + ".png");
+        double temperature = Math.round(1.8 * (forecast.get(index).getTemp().getMax() - 273) + 32);
+        bundle.putString(WTEMP, Double.toString(temperature) + " ºF");
+        bundle.putString(WPRESSURE, Double.toString(forecast.get(index).getPressure()) + " hPa");
+        bundle.putString(WHUMIDITY, Double.toString(forecast.get(index).getHumidity()) + " %");
 
-     City city = weatherRespond.getCity();
-     List<Forecast> forecast=weatherRespond.getList();
-     Bundle bundle = new Bundle();
-     Weather weather = forecast.get(index).getWeather().get(0);
-     bundle.putString(WDESCRIPTION,weather.getMain()+"("+weather.getDescription()+")");
-     bundle.putString(WCITY,city.getName()+ ","+city.getCountry());
-     bundle.putString(WICON,"http://openweathermap.org/img/w/"+weather.getIcon()+".png");
-     double temperature = Math.round(1.8*(forecast.get(index).getTemp().getMax() - 273)+32);
-     bundle.putString(WTEMP,Double.toString(temperature)+" ºF");
-     bundle.putString(WPRESSURE,Double.toString(forecast.get(index).getPressure())+" hPa");
-     bundle.putString(WHUMIDITY,Double.toString(forecast.get(index).getHumidity())+" %");
+        return bundle;
+    }
 
-     return bundle;
-
- }
-
-    public void initOnClick(SecondCardViewHolder holder){
+    public void initOnClick(SecondCardViewHolder holder) {
         holder.getmDay1().setOnClickListener(this);
         holder.getmDay2().setOnClickListener(this);
         holder.getmDay3().setOnClickListener(this);
         holder.getmDay4().setOnClickListener(this);
         holder.getmDay5().setOnClickListener(this);
-
     }
 
     public static InstagramFragment getInstaFrag() {

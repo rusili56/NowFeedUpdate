@@ -31,7 +31,6 @@ public class Forecast {
     }
 
 
-
     public List<Weather> getWeather() {
         return weather;
     }
@@ -39,7 +38,4 @@ public class Forecast {
     public WeatherRespond.Wind getWind() {
         return wind;
     }
-
-
-
 }
