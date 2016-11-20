@@ -105,6 +105,7 @@ public class CardAdapter extends RecyclerView.Adapter implements ViewGroup.OnCli
                     public void onClick(View view) {
                         fragmentManager.beginTransaction()
                                 .replace(R.id.idFragLayout,notesFragment)
+                                .addToBackStack(null)
                                 .commit();
                         Toast.makeText(view.getContext(), "Heading to your List", Toast.LENGTH_SHORT).show();
                     }

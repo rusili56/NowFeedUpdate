@@ -26,7 +26,6 @@ public class ListNotesAdapter extends RecyclerView.Adapter<ListNotesViewHolder> 
     @Override
     public void onBindViewHolder(ListNotesViewHolder holder, int position) {
         holder.onBind(listNotes.get(position));
-//        holder.listTextView.setOnClickListener(this);
     }
 
     @Override
