@@ -2,10 +2,10 @@ package com.example.nowfeed;
 
 import android.app.FragmentManager;
 import android.os.Bundle;
-import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.nowfeed.model.BestSeller;
 import com.example.nowfeed.model.City;
@@ -19,10 +19,6 @@ import java.util.List;
 
 import static android.content.ContentValues.TAG;
 
-import com.example.nowfeed.model.WeatherRespond;
-
-import java.util.List;
-
 /**
  * Created by Millochka on 10/30/16.
  */
@@ -30,12 +26,13 @@ public class CardAdapter extends RecyclerView.Adapter implements ViewGroup.OnCli
 
     private List<Object> items;
     static InstagramFragment instafrag = new InstagramFragment();
+    private static NotesFragment notesFragment = new NotesFragment();
     static FragmentManager fragmentManager;
     static boolean isFragOpen = false;
 
     public final int INSTAGRAM = 0, WEATHER = 1, NOTES = 2, TOPSTORIES = 3, BESTSELLERS = 4;
 
-    public static final String SHARED_NAME= "mynotes";
+    public static final String SHARED_NAME = "mynotes";
 
     public CardAdapter(List<Object> items, FragmentManager fmInput) {
         this.items = items;
@@ -67,7 +64,7 @@ public class CardAdapter extends RecyclerView.Adapter implements ViewGroup.OnCli
                 viewHolder = new BestSellersViewHolder(parent);
                 break;
             default:
-                viewHolder = new ThirdCardViewHolder(parent);
+                viewHolder = new NotesCardViewHolder(parent);
                 break;
         }
         return viewHolder;
@@ -102,16 +99,25 @@ public class CardAdapter extends RecyclerView.Adapter implements ViewGroup.OnCli
                 bestSellersCard.onBind((BestSeller) items.get(position));
                 break;
             default:
+                NotesCardViewHolder notesCardViewHolder = (NotesCardViewHolder) holder;
+                notesCardViewHolder.mList.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        fragmentManager.beginTransaction()
+                                .replace(R.id.idFragLayout,notesFragment)
+                                .commit();
+                        Toast.makeText(view.getContext(), "heading to list notes", Toast.LENGTH_SHORT).show();
+                    }
+                });
                 break;
-
         }
+
     }
 
     @Override
     public int getItemCount() {
         return items.size();
     }
-
 
     @Override
     public int getItemViewType(int position) {
@@ -158,7 +164,6 @@ public class CardAdapter extends RecyclerView.Adapter implements ViewGroup.OnCli
         }
     }
 
-
     public Bundle retrieveWeatherDetails(int index, ForecastFiveDays weatherRespond) {
 
         City city = weatherRespond.getCity();
@@ -195,5 +200,6 @@ public class CardAdapter extends RecyclerView.Adapter implements ViewGroup.OnCli
     public static boolean getIsTrue() {
         return isFragOpen;
     }
+
 
 }
