@@ -106,7 +106,7 @@ public class CardAdapter extends RecyclerView.Adapter implements ViewGroup.OnCli
                         fragmentManager.beginTransaction()
                                 .replace(R.id.idFragLayout,notesFragment)
                                 .commit();
-                        Toast.makeText(view.getContext(), "heading to list notes", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(view.getContext(), "Heading to your List", Toast.LENGTH_SHORT).show();
                     }
                 });
                 break;

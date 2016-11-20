@@ -27,16 +27,15 @@
                 android:background="@drawable/list_border"
                 android:fontFamily="cursive"
                 android:gravity="center|top"
-                android:text="MY LIST NOTES"
+                android:text="LIST NOTES"
                 android:textColor="@color/colorAccent"
                 android:textSize="20sp"
                 android:textStyle="bold" />
-
-            <ListView
-                android:id="@+id/listview"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/listnotes_RV"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-            </ListView>
+            </android.support.v7.widget.RecyclerView>
 
         </LinearLayout>
     </android.support.v7.widget.CardView>

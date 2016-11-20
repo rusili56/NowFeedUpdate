@@ -30,11 +30,13 @@ public class NotesCardViewHolder extends RecyclerView.ViewHolder implements View
     EditText mEdit;
     Button mAdd, mSave, mList;
 
+
     static Set<String> mAddNotes = new HashSet<String>();
     static Set<String> mSavedNotes = new HashSet<String>();
 
     static Set<String> lastAdded = new HashSet<String>();
     static Set<String> lastSaved = new HashSet<String>();
+
 
 
     public NotesCardViewHolder(ViewGroup parent) {
@@ -48,8 +50,6 @@ public class NotesCardViewHolder extends RecyclerView.ViewHolder implements View
         mSave = (Button) mView.findViewById(save_notesBtn);
         mSave.setOnClickListener(this);
         mList = (Button) mView.findViewById(list_notesBtn);
-//        mList.setOnClickListener(this);
-
     }
 
     public static View inflateView(ViewGroup parent) {
@@ -74,25 +74,16 @@ public class NotesCardViewHolder extends RecyclerView.ViewHolder implements View
                 mSavedNotes.add(saveLast);
                 Toast.makeText(view.getContext(), "saved notes", Toast.LENGTH_SHORT).show();
                 break;
-
-
-//                List<String> myNoteList = new ArrayList();
-//                myNoteList.addAll(mSavedNotes);
-//
-//                ArrayAdapter<String> adapter = new ArrayAdapter<String>(view.getContext(),
-//                        android.R.layout.list_content, myNoteList);
-//                listView.setAdapter(adapter);
-
-
-
         }
     }
+
 
     public static Set<String> getAddHash() {
         return mAddNotes;
     }
 
     public static Set<String> getSavedHash() {
+        mSavedNotes.addAll(mAddNotes);
         return mSavedNotes;
     }
 
