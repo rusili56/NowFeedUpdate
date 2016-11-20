@@ -15,17 +15,16 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
-import android.widget.Button;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.nowfeed.network.WeatherApi;
 import com.example.nowfeed.model.BestSeller;
 import com.example.nowfeed.model.ForecastFiveDays;
 import com.example.nowfeed.model.Instagram;
 import com.example.nowfeed.model.TopStory;
 import com.example.nowfeed.network.InstagramService;
 import com.example.nowfeed.network.NYTimesService;
+import com.example.nowfeed.network.WeatherApi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +36,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends AppCompatActivity implements GestureDetector.OnGestureListener{
+public class MainActivity extends AppCompatActivity implements GestureDetector.OnGestureListener {
     InstagramFragment instafrag = new InstagramFragment();
     VideoFragment vidfrag = new VideoFragment();
 
@@ -59,22 +58,22 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mDetector = new GestureDetectorCompat(this,this);
+        mDetector = new GestureDetectorCompat(this, this);
 
-        if (isNetworkOnline() == false){
+        if (isNetworkOnline() == false) {
             Toast toast = Toast.makeText(this, "Please check your network. App will only have partial functionality", Toast.LENGTH_LONG);
             toast.show();
         }
 
 //        //Hyun
-          mCardsData.add("My notes");
+        mCardsData.add("My notes");
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             // If the screen is now in landscape mode, we can show the
             sharedPrefs = getSharedPreferences("Stuff", MODE_PRIVATE);
-            getAddedNotes = sharedPrefs.getStringSet("mAddedNotes", ThirdCardViewHolder.getAddHash());
-            getSavedNotes = sharedPrefs.getStringSet("mSavedNotes", ThirdCardViewHolder.getSavedHash());
-            ThirdCardViewHolder.setSavedNotes(getSavedNotes);
-            ThirdCardViewHolder.setAddedNotes(getAddedNotes);
+            getAddedNotes = sharedPrefs.getStringSet("mAddedNotes", NotesCardViewHolder.getAddHash());
+            getSavedNotes = sharedPrefs.getStringSet("mSavedNotes", NotesCardViewHolder.getSavedHash());
+            NotesCardViewHolder.setSavedNotes(getSavedNotes);
+            NotesCardViewHolder.setAddedNotes(getAddedNotes);
         }
         WeatherAPI();
 
@@ -199,24 +198,24 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         super.onDestroy();
         sharedPrefs = getSharedPreferences("Stuff", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPrefs.edit();
-        editor.putStringSet("mAddNotes", ThirdCardViewHolder.getAddHash());
-        editor.putStringSet("mSavedNotes", ThirdCardViewHolder.getSavedHash());
+        editor.putStringSet("mAddNotes", NotesCardViewHolder.getAddHash());
+        editor.putStringSet("mSavedNotes", NotesCardViewHolder.getSavedHash());
         editor.apply();
     }
 
     public boolean isNetworkOnline() {
-        boolean status=false;
-        try{
+        boolean status = false;
+        try {
             ConnectivityManager cm = (ConnectivityManager) getSystemService(this.CONNECTIVITY_SERVICE);
             NetworkInfo netInfo = cm.getNetworkInfo(0);
-            if (netInfo != null && netInfo.getState()==NetworkInfo.State.CONNECTED) {
-                status= true;
-            }else {
+            if (netInfo != null && netInfo.getState() == NetworkInfo.State.CONNECTED) {
+                status = true;
+            } else {
                 netInfo = cm.getNetworkInfo(1);
-                if(netInfo!=null && netInfo.getState()==NetworkInfo.State.CONNECTED)
-                    status= true;
+                if (netInfo != null && netInfo.getState() == NetworkInfo.State.CONNECTED)
+                    status = true;
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
@@ -224,7 +223,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event){
+    public boolean onTouchEvent(MotionEvent event) {
         this.mDetector.onTouchEvent(event);
         // Be sure to call the superclass implementation
         return super.onTouchEvent(event);
